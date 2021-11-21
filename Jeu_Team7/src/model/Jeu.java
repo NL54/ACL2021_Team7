@@ -21,12 +21,15 @@ public class Jeu implements Game {
 	 * constructeur avec fichier source pour le help
 	 * 
 	 */
+	
 	Plateau1 p1;
 	Plateau2 p2;
 	int niveau;
 	public Jeu(String source) {
+		
 		p1 = new Plateau1();
 		p2= new Plateau2();
+	
 		niveau=1;
 		BufferedReader helpReader;
 		try {
@@ -50,11 +53,20 @@ public class Jeu implements Game {
 	public void evolve(Cmd commande) {
 		System.out.println("Execute "+commande);
 		if (commande==Cmd.LEFT) {
-			if (activePassage(niveau,"droite")) {// normalement c'est gauche mais on test la droite
-				niveau+=1;} 
-			p1.plateau[1][1]=0;
-			p1.plateau[1][2]=2;
 		
+			
+			//if (activePassage(niveau,"droite")) {// normalement c'est gauche mais on test la droite
+				//niveau+=1;} 
+			//p1.plateau[getPosHeros(niveau)[0]][getPosHeros(niveau)[1]+1]=2;
+			//p1.plateau[getPosHeros(niveau)[0]][getPosHeros(niveau)[1]]=0;
+			//if (activePiege(niveau,"droite")) {
+				//heros perd 1pv
+			//}
+			//if (activeMagie(niveau,"droite")) {
+				//niveau+=1;
+				//p1.plateau[1][1]=0;
+				//p1.plateau[1][2]=0;
+				//} 
 			
 			
 		}
@@ -90,7 +102,7 @@ public class Jeu implements Game {
 				}
 			}
 	}
-		int position []= {pos,x,y};
+		int position []= {x,y};
 		return position ;
 	}
 	public int getPos(int[] position,int niveau) { // permet d'obtenir ce qu'il y a à un endroit
@@ -108,8 +120,30 @@ public class Jeu implements Game {
 	public boolean activePassage(int niveau,String direction) {
 		int [] posfutur = new int[2];
 		if (direction == "droite") {
-			posfutur[0]= getPosHeros(niveau)[1]+1;
-			posfutur[1]= getPosHeros(niveau)[2];
+			posfutur[0]= getPosHeros(niveau)[0]+1;
+			posfutur[1]= getPosHeros(niveau)[1];
+		}
+		if (getPos(posfutur,niveau)==5) {
+			return true;
+		}
+		return false;
+	}
+	public boolean activeMagie(int niveau,String direction) {
+		int [] posfutur = new int[2];
+		if (direction == "droite") {
+			posfutur[0]= getPosHeros(niveau)[0]+1;
+			posfutur[1]= getPosHeros(niveau)[1];
+		}
+		if (getPos(posfutur,niveau)==5) {
+			return true;
+		}
+		return false;
+	}
+	public boolean activePiege(int niveau,String direction) {
+		int [] posfutur = new int[2];
+		if (direction == "droite") {
+			posfutur[0]= getPosHeros(niveau)[0]+1;
+			posfutur[1]= getPosHeros(niveau)[1];
 		}
 		if (getPos(posfutur,niveau)==5) {
 			return true;
