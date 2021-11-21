@@ -44,13 +44,21 @@ public class Controlleur implements GameController {
 
 		switch (e.getKeyChar()) {
 		// si on appuie sur 'q',commande joueur est gauche
-		case 'l':
-		case 'L':
+		case 'Q':
+		case 'q':
 			this.commandeEnCours = Cmd.LEFT;
 			break;
-		case 'r':
-		case 'R':
+		case 'D':
+		case 'd':
 			this.commandeEnCours = Cmd.RIGHT;
+			break;
+		case 'z':
+		case 'Z':
+			this.commandeEnCours = Cmd.UP;
+			break;
+		case 's':
+		case 'S':
+			this.commandeEnCours = Cmd.DOWN;
 			break;
 		}
 

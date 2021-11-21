@@ -52,7 +52,7 @@ public class Jeu implements Game {
 	@Override
 	public void evolve(Cmd commande) {
 		System.out.println("Execute "+commande);
-		if (commande==Cmd.LEFT) {
+		if (commande==Cmd.RIGHT) {
 		
 			
 			//if (activePassage(niveau,"droite")) {// normalement c'est gauche mais on test la droite
@@ -62,11 +62,11 @@ public class Jeu implements Game {
 			//if (activePiege(niveau,"droite")) {
 				//heros perd 1pv
 			//}
-			//if (activeMagie(niveau,"droite")) {
-				//niveau+=1;
-				//p1.plateau[1][1]=0;
-				//p1.plateau[1][2]=0;
-				//} 
+			if (activeMagie(niveau,commande)) {
+				p1.plateau[1][1]=2;
+				if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
+					{p1.plateau[getPosHeros(niveau)[0]][getPosHeros(niveau)[1]]=0;}
+				} 
 			
 			
 		}
@@ -128,24 +128,24 @@ public class Jeu implements Game {
 		}
 		return false;
 	}
-	public boolean activeMagie(int niveau,String direction) {
+	public boolean activeMagie(int niveau,Cmd commande) {
 		int [] posfutur = new int[2];
-		if (direction == "droite") {
+		if (commande == Cmd.RIGHT) {
 			posfutur[0]= getPosHeros(niveau)[0]+1;
 			posfutur[1]= getPosHeros(niveau)[1];
 		}
-		if (getPos(posfutur,niveau)==5) {
+		if (getPos(posfutur,niveau)==4) {
 			return true;
 		}
 		return false;
 	}
-	public boolean activePiege(int niveau,String direction) {
+	public boolean activePiege(int niveau,Cmd commande) {
 		int [] posfutur = new int[2];
-		if (direction == "droite") {
+		if (commande == Cmd.RIGHT) {
 			posfutur[0]= getPosHeros(niveau)[0]+1;
 			posfutur[1]= getPosHeros(niveau)[1];
 		}
-		if (getPos(posfutur,niveau)==5) {
+		if (getPos(posfutur,niveau)==3) {
 			return true;
 		}
 		return false;
