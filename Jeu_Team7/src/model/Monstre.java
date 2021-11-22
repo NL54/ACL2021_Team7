@@ -1,31 +1,41 @@
 package model;
-
-import java.util.Random;
-
-public class Monstre
-{
-	int X;
-	int Y;
-	public Monstre(int X, int Y) {
-		this.X=X;
-		this.Y=Y;
+import java.util.*;
+public class Monstre {
+	public int[] position;
+	public int pv=1;
+	public int type;
+	
+	Monstre(int[]position,int pv,int type){
+		this.position=position;
+		this.pv=pv;
+		this.type=type;
 	}
-	public int getX1() {
-		return(this.X);
+	
+	public int[] getPosition() {
+		return position;
 	}
-	public int getY1() {
-		return(this.Y);
-	}
-	public void setX1() {
-		this.X=this.X+genererInt(-1,1)*23;
-	}
-	public void setY1() {
-		this.Y=this.Y+genererInt(-1,1)*23;
-	}
-	public int genererInt(int borneInf, int borneSup){
-		   Random random = new Random();
-		   int nb;
-		   nb = borneInf+random.nextInt(borneSup-borneInf);
-		   return nb;
+	
+	public void deplacer() {
+		position=getPosition();
+		
+		Random ran=new Random();
+		
+		int nxt= ran.nextInt(4);
+		
+		if(nxt==0) {             //le monstre va a gauche
+			position[0]-=1;
 		}
+		if(nxt==1) {			// le monstre va droite
+			position[0]+=1;
+		}
+		if(nxt==2) {
+			position[1]+=1;		//le monstre va en haut
+		}
+		if(nxt==3) {
+			position[1]-=1;
+		}
+	}
+	
+	
+
 }
