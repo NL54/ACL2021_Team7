@@ -42,16 +42,16 @@ public class Heros extends Jeu {
 		if (commande==Cmd.RIGHT) {
 			pos=getPosition(niveau);
 			if(niveau==1) {
-				if(super.p1.plateau[pos[1]][pos[0]-1]!=1){
-					p1.plateau[pos[1]][pos[0]-1]=2;
+				if(super.p1.plateau[pos[1]][pos[0]+1]!=1){
+					p1.plateau[pos[1]][pos[0]+1]=2;
 					p1.plateau[pos[1]][pos[0]]=0;
 					
 				}
 				
 			}
 			if(niveau==2) {
-				if(super.p2.plateau[pos[1]][pos[0]-1]!=1){
-					p2.plateau[pos[1]][pos[0]-1]=2;
+				if(super.p2.plateau[pos[1]][pos[0]+1]!=1){
+					p2.plateau[pos[1]][pos[0]+1]=2;
 					p2.plateau[pos[1]][pos[0]]=0;
 					
 				}
@@ -61,16 +61,16 @@ public class Heros extends Jeu {
 		if (commande==Cmd.UP) {
 			pos=getPosition(niveau);
 			if(niveau==1) {
-				if(super.p1.plateau[pos[1]][pos[0]-1]!=1){
-					p1.plateau[pos[1]][pos[0]-1]=2;
+				if(super.p1.plateau[pos[1]-1][pos[0]]!=1){
+					p1.plateau[pos[1]-1][pos[0]-1]=2;
 					p1.plateau[pos[1]][pos[0]]=0;
 					
 				}
 				
 			}
 			if(niveau==2) {
-				if(super.p2.plateau[pos[1]][pos[0]-1]!=1){
-					p2.plateau[pos[1]][pos[0]-1]=2;
+				if(super.p2.plateau[pos[1]-1][pos[0]]!=1){
+					p2.plateau[pos[1]-1][pos[0]-1]=2;
 					p2.plateau[pos[1]][pos[0]]=0;
 					
 				}
@@ -80,16 +80,16 @@ public class Heros extends Jeu {
 		if (commande==Cmd.DOWN) {
 			pos=getPosition(niveau);
 			if(niveau==1) {
-				if(super.p1.plateau[pos[1]][pos[0]-1]!=1){
-					p1.plateau[pos[1]][pos[0]-1]=2;
+				if(super.p1.plateau[pos[1]+1][pos[0]]!=1){
+					p1.plateau[pos[1]+1][pos[0]-1]=2;
 					p1.plateau[pos[1]][pos[0]]=0;
 					
 				}
 				
 			}
 			if(niveau==2) {
-				if(super.p2.plateau[pos[1]][pos[0]-1]!=1){
-					p2.plateau[pos[1]][pos[0]-1]=2;
+				if(super.p2.plateau[pos[1]+1][pos[0]]!=1){
+					p2.plateau[pos[1]+1][pos[0]]=2;
 					p2.plateau[pos[1]][pos[0]]=0;
 					
 				}
@@ -97,5 +97,14 @@ public class Heros extends Jeu {
 			}
 		}
 		
+	}
+	
+	public void attaquer(Cmd commande, int niveau) {
+		pos=getPosition(niveau);
+		if(commande==Cmd.ATT) {
+			if(niveau==1 && super.p1.plateau[pos[1]+1][pos[0]]==7) {
+				
+			}
+		}
 	}
 }

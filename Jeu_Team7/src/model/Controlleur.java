@@ -60,6 +60,9 @@ public class Controlleur implements GameController {
 		case 'S':
 			this.commandeEnCours = Cmd.DOWN;
 			break;
+		case 'a':
+		case 'A':
+			this.commandeEnCours= Cmd.ATT;
 		}
 
 	}
