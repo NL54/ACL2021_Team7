@@ -21,7 +21,7 @@ public class Jeu implements Game {
 	 * constructeur avec fichier source pour le help
 	 * 
 	 */
-	
+	//Heros h=new Heros ("helpFilePacman.txt",3);
 	Plateau1 p1;
 	Plateau2 p2;
 	int niveau;
@@ -53,10 +53,12 @@ public class Jeu implements Game {
 	public void evolve(Cmd commande) {
 		System.out.println("Execute "+commande);
 		if (commande==Cmd.RIGHT) {
-		
+			if (activePassage(niveau,"droite")) {// normalement c'est gauche mais on test la droite
+				niveau+=1;} 
+			deplacer(commande,niveau);
+			//h.deplacer(commande,niveau);
 			
-			//if (activePassage(niveau,"droite")) {// normalement c'est gauche mais on test la droite
-				//niveau+=1;} 
+			
 			//p1.plateau[getPosHeros(niveau)[0]][getPosHeros(niveau)[1]+1]=2;
 			//p1.plateau[getPosHeros(niveau)[0]][getPosHeros(niveau)[1]]=0;
 			//if (activePiege(niveau,"droite")) {
@@ -69,6 +71,15 @@ public class Jeu implements Game {
 				} 
 			
 			
+		}
+		if(commande==Cmd.LEFT) {
+			deplacer(commande,niveau);
+		}
+		if(commande==Cmd.UP) {
+			deplacer(commande,niveau);
+		}
+		if(commande==Cmd.DOWN) {
+			deplacer(commande,niveau);
 		}
 	}
 
@@ -149,6 +160,91 @@ public class Jeu implements Game {
 			return true;
 		}
 		return false;
+	}
+	
+	//methode pour deplacer le hero
+	int[]pos;
+	public void deplacer(Cmd commande, int niveau){
+		if (commande==Cmd.LEFT) {
+			pos=getPosHeros(niveau);
+			if(niveau==1) {
+				
+				if(p1.plateau[pos[1]][pos[0]-1]!=1){
+					p1.plateau[pos[1]][pos[0]-1]=2;
+					p1.plateau[pos[1]][pos[0]]=0;
+					
+				}
+				
+			}
+			if(niveau==2) {
+				if(p2.plateau[pos[1]][pos[0]-1]!=1){
+					p2.plateau[pos[1]][pos[0]-1]=2;
+					p2.plateau[pos[1]][pos[0]]=0;
+					
+				}
+				
+			}
+		}
+		if (commande==Cmd.RIGHT) {
+			pos=getPosHeros(niveau);
+			if(niveau==1) {
+				System.out.println(pos[0]);
+				System.out.println(pos[1]);
+				if(p1.plateau[pos[1]][pos[0]+1]!=1){
+					p1.plateau[pos[1]][pos[0]+1]=2;
+					p1.plateau[pos[1]][pos[0]]=0;
+					
+				}
+				
+			}
+			if(niveau==2) {
+				if(p2.plateau[pos[1]][pos[0]+1]!=1){
+					p2.plateau[pos[1]][pos[0]+1]=2;
+					p2.plateau[pos[1]][pos[0]]=0;
+					
+				}
+				
+			}
+		}
+		if (commande==Cmd.UP) {
+			pos=getPosHeros(niveau);
+			if(niveau==1) {
+				if(p1.plateau[pos[1]-1][pos[0]]!=1){
+					p1.plateau[pos[1]-1][pos[0]]=2;
+					p1.plateau[pos[1]][pos[0]]=0;
+					
+				}
+				
+			}
+			if(niveau==2) {
+				if(p2.plateau[pos[1]-1][pos[0]]!=1){
+					p2.plateau[pos[1]-1][pos[0]-1]=2;
+					p2.plateau[pos[1]][pos[0]]=0;
+					
+				}
+				
+			}
+		}
+		if (commande==Cmd.DOWN) {
+			pos=getPosHeros(niveau);
+			if(niveau==1) {
+				if(p1.plateau[pos[1]+1][pos[0]]!=1){
+					p1.plateau[pos[1]+1][pos[0]]=2;
+					p1.plateau[pos[1]][pos[0]]=0;
+					
+				}
+				
+			}
+			if(niveau==2) {
+				if(p2.plateau[pos[1]+1][pos[0]]!=1){
+					p2.plateau[pos[1]+1][pos[0]]=2;
+					p2.plateau[pos[1]][pos[0]]=0;
+					
+				}
+				
+			}
+		}
+		
 	}
 
 }
