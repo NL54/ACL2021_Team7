@@ -1,0 +1,4 @@
+Fonction design pour le montre implémentation des images : Lucas 
+Optimisation de la fonction attaque et modification des pv du héros en fct de difficulté : Resa
+ajout de 2 nouveaux plateaux trésor dans 1 et 3 pour difficulté 1 et 2 : Salma
+Ajout de difficulté + ajouter un fond d’écran diagramme de séquence et de classe : Nicolas
