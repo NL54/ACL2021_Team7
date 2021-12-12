@@ -24,11 +24,14 @@ public class Jeu implements Game {
 	//Heros h=new Heros ("helpFilePacman.txt",3);
 	Plateau1 p1;
 	Plateau2 p2;
+	Heros h;
 	int niveau;
+	public boolean fin;
 	public Jeu(String source) {
-		
+		fin=false;
 		p1 = new Plateau1();
 		p2= new Plateau2();
+		h=new Heros(3);
 	
 		niveau=1;
 		BufferedReader helpReader;
@@ -53,34 +56,98 @@ public class Jeu implements Game {
 	public void evolve(Cmd commande) {
 		System.out.println("Execute "+commande);
 		if (commande==Cmd.RIGHT) {
-			if (activePassage(niveau,"droite")) {// normalement c'est gauche mais on test la droite
-				niveau+=1;} 
-			deplacer(commande,niveau);
-			//h.deplacer(commande,niveau);
-			
-			
-			//p1.plateau[getPosHeros(niveau)[0]][getPosHeros(niveau)[1]+1]=2;
-			//p1.plateau[getPosHeros(niveau)[0]][getPosHeros(niveau)[1]]=0;
-			//if (activePiege(niveau,"droite")) {
-				//heros perd 1pv
-			//}
-			if (activeMagie(niveau,commande)) {
-				p1.plateau[1][1]=2;
-				if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
-					{p1.plateau[getPosHeros(niveau)[0]][getPosHeros(niveau)[1]]=0;}
+			if (activePassage(niveau,commande)) {
+				niveau+=1;
 				} 
 			
+			else if (activeMagie(niveau,commande)) {
+				p1.plateau[1][1]=2;
+				
+				p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+				} 
+			else if (activePiege(niveau,commande)) {
+				h.perdpointdevie(1);
+				deplacer(commande,niveau);
+				}
+			else if (Tresor(niveau,commande)) {
+				fin=true;
+				System.out.println("BRAVO TU AS GAGNE");
+			}
+	
+				deplacer(commande,niveau);
+		
 			
-		}
+				} 
 		if(commande==Cmd.LEFT) {
-			deplacer(commande,niveau);
-		}
+			if (activePassage(niveau,commande)) {
+				niveau+=1;
+				} 
+			
+			else if (activeMagie(niveau,commande)) {
+				p1.plateau[1][1]=2;
+				if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
+					{p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;}
+				} 
+			else if (activePiege(niveau,commande)) {
+				h.perdpointdevie(1);
+				deplacer(commande,niveau);
+				}
+			else if (Tresor(niveau,commande)) {
+				fin=true;
+				System.out.println("BRAVO TU AS GAGNE");
+			}
+			
+				deplacer(commande,niveau);
+			
+			
+				} 
 		if(commande==Cmd.UP) {
+			if (activePassage(niveau,commande)) {
+				niveau+=1;
+				} 
+			
+			else if (activeMagie(niveau,commande)) {
+				p1.plateau[1][1]=2;
+				if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
+					{p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;}
+				} 
+			else if (activePiege(niveau,commande)) {
+				h.perdpointdevie(1);
+				deplacer(commande,niveau);
+				}
+			else if (Tresor(niveau,commande)) {
+				fin=true;
+				System.out.println("BRAVO TU AS GAGNE");
+			}
+		
 			deplacer(commande,niveau);
-		}
+			
+			
+				} 
 		if(commande==Cmd.DOWN) {
+			if (activePassage(niveau,commande)) {
+				niveau+=1;
+				} 
+			
+			else if (activeMagie(niveau,commande)) {
+				p1.plateau[1][1]=2;
+				if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
+					{p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;}
+				} 
+			else if (activePiege(niveau,commande)) {
+				h.perdpointdevie(1);
+				deplacer(commande,niveau);
+				}
+			else if (Tresor(niveau,commande)) {
+				fin=true;
+				System.out.println("BRAVO TU AS GAGNE");
+			}
 			deplacer(commande,niveau);
-		}
+			
+			
+				} 
+			
+		
 	}
 
 	/**
@@ -88,8 +155,14 @@ public class Jeu implements Game {
 	 */
 	@Override
 	public boolean isFinished() {
-		// le jeu n'est jamais fini
-		return false;
+		if (fin==true) {
+			return true;
+			} 
+		else {
+			return false;
+		}
+		
+		
 	}
 	public int[] getPosHeros(int niveau) {
 		int pos =0;
@@ -128,22 +201,47 @@ public class Jeu implements Game {
 		}
 		return pos;
 	}
-	public boolean activePassage(int niveau,String direction) {
+	public boolean activePassage(int niveau,Cmd commande) {
 		int [] posfutur = new int[2];
-		if (direction == "droite") {
+		if (commande == Cmd.RIGHT) {
 			posfutur[0]= getPosHeros(niveau)[0]+1;
 			posfutur[1]= getPosHeros(niveau)[1];
+		}
+		if (commande == Cmd.LEFT) {
+			posfutur[0]= getPosHeros(niveau)[0]-1;
+			posfutur[1]= getPosHeros(niveau)[1];
+		}
+		if (commande == Cmd.UP) {
+			posfutur[0]= getPosHeros(niveau)[0];
+			posfutur[1]= getPosHeros(niveau)[1]-1;
+		}
+		if (commande == Cmd.DOWN) {
+			posfutur[0]= getPosHeros(niveau)[0];
+			posfutur[1]= getPosHeros(niveau)[1]+1;
 		}
 		if (getPos(posfutur,niveau)==5) {
 			return true;
 		}
 		return false;
 	}
+	
 	public boolean activeMagie(int niveau,Cmd commande) {
 		int [] posfutur = new int[2];
 		if (commande == Cmd.RIGHT) {
 			posfutur[0]= getPosHeros(niveau)[0]+1;
 			posfutur[1]= getPosHeros(niveau)[1];
+		}
+		if (commande == Cmd.LEFT) {
+			posfutur[0]= getPosHeros(niveau)[0]-1;
+			posfutur[1]= getPosHeros(niveau)[1];
+		}
+		if (commande == Cmd.UP) {
+			posfutur[0]= getPosHeros(niveau)[0];
+			posfutur[1]= getPosHeros(niveau)[1]-1;
+		}
+		if (commande == Cmd.DOWN) {
+			posfutur[0]= getPosHeros(niveau)[0];
+			posfutur[1]= getPosHeros(niveau)[1]+1;
 		}
 		if (getPos(posfutur,niveau)==4) {
 			return true;
@@ -156,7 +254,42 @@ public class Jeu implements Game {
 			posfutur[0]= getPosHeros(niveau)[0]+1;
 			posfutur[1]= getPosHeros(niveau)[1];
 		}
+		if (commande == Cmd.LEFT) {
+			posfutur[0]= getPosHeros(niveau)[0]-1;
+			posfutur[1]= getPosHeros(niveau)[1];
+		}
+		if (commande == Cmd.UP) {
+			posfutur[0]= getPosHeros(niveau)[0];
+			posfutur[1]= getPosHeros(niveau)[1]-1;
+		}
+		if (commande == Cmd.DOWN) {
+			posfutur[0]= getPosHeros(niveau)[0];
+			posfutur[1]= getPosHeros(niveau)[1]+1;
+		}
 		if (getPos(posfutur,niveau)==3) {
+			return true;
+		}
+		return false;
+	}
+	public boolean Tresor(int niveau,Cmd commande) {
+		int [] posfutur = new int[2];
+		if (commande == Cmd.RIGHT) {
+			posfutur[0]= getPosHeros(niveau)[0]+1;
+			posfutur[1]= getPosHeros(niveau)[1];
+		}
+		if (commande == Cmd.LEFT) {
+			posfutur[0]= getPosHeros(niveau)[0]-1;
+			posfutur[1]= getPosHeros(niveau)[1];
+		}
+		if (commande == Cmd.UP) {
+			posfutur[0]= getPosHeros(niveau)[0];
+			posfutur[1]= getPosHeros(niveau)[1]-1;
+		}
+		if (commande == Cmd.DOWN) {
+			posfutur[0]= getPosHeros(niveau)[0];
+			posfutur[1]= getPosHeros(niveau)[1]+1;
+		}
+		if (getPos(posfutur,niveau)==6) {
 			return true;
 		}
 		return false;
@@ -218,7 +351,7 @@ public class Jeu implements Game {
 			}
 			if(niveau==2) {
 				if(p2.plateau[pos[1]-1][pos[0]]!=1){
-					p2.plateau[pos[1]-1][pos[0]-1]=2;
+					p2.plateau[pos[1]-1][pos[0]]=2;
 					p2.plateau[pos[1]][pos[0]]=0;
 					
 				}

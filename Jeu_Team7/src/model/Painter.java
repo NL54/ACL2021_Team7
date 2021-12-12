@@ -53,7 +53,11 @@ public class Painter implements GamePainter {
 
 		for (int i=0; i<p.taille ;i++) {
 			for (int j=0; j<p.taille ;j++) {
-		
+			if (p.plateau[j][i]==0) {
+								
+								crayon.setColor(Color.WHITE);
+								crayon.fillRect(i*40, j*40 , 40, 40);
+								}
 				if (p.plateau[j][i]==1) {
 					
 					crayon.setColor(Color.DARK_GRAY);
@@ -67,6 +71,16 @@ public class Painter implements GamePainter {
 				if (p.plateau[j][i]==5) {
 					
 					crayon.setColor(Color.YELLOW);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+			}
+				if (p.plateau[j][i]==6) {
+									
+									crayon.setColor(Color.CYAN);
+									crayon.fillOval(i*40, j*40 , 40, 40);
+							}
+				if (p.plateau[j][i]==4) {
+					
+					crayon.setColor(Color.GREEN);
 					crayon.fillOval(i*40, j*40 , 40, 40);
 			}
 		
@@ -92,7 +106,7 @@ public class Painter implements GamePainter {
 				if (p.plateau[j][i]==2) {
 					
 					crayon.setColor(Color.MAGENTA);
-			crayon.fillOval(i*40, j*40 , 40, 40);
+					crayon.fillOval(i*40, j*40 , 40, 40);
 			}
 				if (p.plateau[j][i]==6) {
 					
