@@ -379,5 +379,41 @@ public class Jeu implements Game {
 		}
 		
 	}
+	public void attaquer(Cmd commande, int niveau) {
+		pos=getPosHeros(niveau);
+		if(commande==Cmd.ATT) {
+			if(niveau ==1) {
+				if(p1.plateau[pos[1]+1][pos[0]]==7) {
+					p1.plateau[pos[1]+1][pos[0]]=0;
+				}
+				
+				if(p1.plateau[pos[1]-1][pos[0]]==7) {
+					p1.plateau[pos[1]-1][pos[0]]=0;
+				}
+				if(p1.plateau[pos[1]][pos[0]-1]==7) {
+					p1.plateau[pos[1]][pos[0]-1]=0;
+				}
+				if(p1.plateau[pos[1]][pos[0]+1]==7) {
+					p1.plateau[pos[1]][pos[0]+1]=0;
+				}
+			}
+			if(niveau==2) {
+				if(p2.plateau[pos[1]+1][pos[0]]==7) {
+					p2.plateau[pos[1]+1][pos[0]]=0;
+				}
+				
+				if(p2.plateau[pos[1]-1][pos[0]]==7) {
+					p2.plateau[pos[1]-1][pos[0]]=0;
+				}
+				if(p2.plateau[pos[1]][pos[0]-1]==7) {
+					p2.plateau[pos[1]][pos[0]-1]=0;
+				}
+				if(p2.plateau[pos[1]][pos[0]+1]==7) {
+					p2.plateau[pos[1]][pos[0]+1]=0;
+				}
+			}
+		}
+	}
+
 
 }
