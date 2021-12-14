@@ -37,6 +37,5 @@ public class Plateau5 {
 		taille=plateau.length;
 		
 	}
-	public void activemagie() {
-}
+
 }
