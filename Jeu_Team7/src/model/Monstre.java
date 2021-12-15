@@ -8,6 +8,7 @@ public class Monstre{
 	private int point_de_vie;
 	private int position_x;
 	private int position_y;
+	this.image = "monstre";
 	public Monstre(int point_de_vie, int position_x, int position_y) {
 		this.point_de_vie = point_de_vie;
 		this.position_x = position_x;
