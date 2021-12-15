@@ -1,17 +1,14 @@
 package model;
 
-import java.awt.event.KeyEvent;
-
-import engine.Cmd;
 
 public class Heros  {
+	public String image;
 	int[]pos;
 	public int Hp = 3;
-	this.image = "Heros"
 	
 	Heros( int Hp ){
 		this.Hp = Hp;
-		this.image = "Heros"
+		this.image = "heros";
 	}
 	public void perdpointdevie(int n) {
 		this.Hp=this.Hp-n;
