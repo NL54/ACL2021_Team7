@@ -43,6 +43,15 @@ public class Painter implements GamePainter {
 		if (jeu.niveau==2) {
 			DessinerPlateau2(im,jeu.p2,jeu.niveau);
 			}
+		if (jeu.niveau==3) {
+			DessinerPlateau3(im,jeu.p3,jeu.niveau);
+			}
+		if (jeu.niveau==4) {
+			DessinerPlateau4(im,jeu.p4,jeu.niveau);
+			}
+		if (jeu.niveau==5) {
+			DessinerPlateau5(im,jeu.p5,jeu.niveau);
+			}
 	}
 	public void DessinerPlateau1(BufferedImage im,Plateau1 p,int niveau) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
@@ -100,39 +109,185 @@ public class Painter implements GamePainter {
 
 		for (int i=0; i<p.taille ;i++) {
 			for (int j=0; j<p.taille ;j++) {
-		
-				if (p.plateau[j][i]==1) {// les murs
+				if (p.plateau[j][i]==10) {//murs contour
 					
 					crayon.setColor(Color.DARK_GRAY);
 					crayon.fillRect(i*40, j*40 , 40, 40);
 					}
-				if (p.plateau[j][i]==2) {
+				if (p.plateau[j][i]==1) {//murs
+					
+					crayon.setColor(Color.DARK_GRAY);
+					crayon.fillRect(i*40, j*40 , 40, 40);
+					}
+				if (p.plateau[j][i]==2) {//heros
 					
 					crayon.setColor(Color.MAGENTA);
 			crayon.fillOval(i*40, j*40 , 40, 40);
 			}
-				if (p.plateau[j][i]==6) {
+				if (p.plateau[j][i]==5) {//tresor
 					
 					crayon.setColor(Color.YELLOW);
 					crayon.fillOval(i*40, j*40 , 40, 40);
-			}
-				if (p.plateau[j][i]==4) {// magie
 					
-					crayon.setColor(Color.white);
-					crayon.fillOval(i*40, j*40 , 40, 40);
 			}
 				if (p.plateau[j][i]==6) {//passage
 					
-					crayon.setColor(Color.YELLOW);
+					crayon.setColor(Color.BLUE);
 					crayon.fillOval(i*40, j*40 , 40, 40);
+					
 			}
-		
+				if (p.plateau[j][i]==3) {//piege
+					
+					crayon.setColor(Color.RED);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+					
+			}
 		
 			}
 		}
 		
 	}
+	public void DessinerPlateau3(BufferedImage im,Plateau3 p,int niveau) {
+		Graphics2D crayon = (Graphics2D) im.getGraphics();
+		crayon.setPaint(Color.red);
+		crayon.setFont(new Font("Microsoft YaHei", Font.PLAIN, 40));
+        String s = "Niveau " + niveau;
+        crayon.drawString(s, p.taille*18, p.taille*40+60);
 
+		for (int i=0; i<p.taille ;i++) {
+			for (int j=0; j<p.taille ;j++) {
+				if (p.plateau[j][i]==10) {//murs contour
+					
+					crayon.setColor(Color.DARK_GRAY);
+					crayon.fillRect(i*40, j*40 , 40, 40);
+					}
+				if (p.plateau[j][i]==1) {//murs
+					
+					crayon.setColor(Color.DARK_GRAY);
+					crayon.fillRect(i*40, j*40 , 40, 40);
+					}
+				if (p.plateau[j][i]==2) {//heros
+					
+					crayon.setColor(Color.MAGENTA);
+			crayon.fillOval(i*40, j*40 , 40, 40);
+			}
+				if (p.plateau[j][i]==5) {//tresor
+					
+					crayon.setColor(Color.YELLOW);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+					
+			}
+				if (p.plateau[j][i]==6) {//passage
+					
+					crayon.setColor(Color.BLUE);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+					
+			}
+				if (p.plateau[j][i]==3) {//piege
+					
+					crayon.setColor(Color.RED);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+					
+			}
+		
+			}
+		}
+		
+	}
+	public void DessinerPlateau4(BufferedImage im,Plateau4 p,int niveau) {
+		Graphics2D crayon = (Graphics2D) im.getGraphics();
+		crayon.setPaint(Color.red);
+		crayon.setFont(new Font("Microsoft YaHei", Font.PLAIN, 40));
+        String s = "Niveau " + niveau;
+        crayon.drawString(s, p.taille*18, p.taille*40+60);
+
+		for (int i=0; i<p.taille ;i++) {
+			for (int j=0; j<p.taille ;j++) {
+				if (p.plateau[j][i]==10) {//murs contour
+					
+					crayon.setColor(Color.DARK_GRAY);
+					crayon.fillRect(i*40, j*40 , 40, 40);
+					}
+				if (p.plateau[j][i]==1) {//murs
+					
+					crayon.setColor(Color.DARK_GRAY);
+					crayon.fillRect(i*40, j*40 , 40, 40);
+					}
+				if (p.plateau[j][i]==2) {//heros
+					
+					crayon.setColor(Color.MAGENTA);
+			crayon.fillOval(i*40, j*40 , 40, 40);
+			}
+				if (p.plateau[j][i]==5) {//tresor
+					
+					crayon.setColor(Color.YELLOW);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+					
+			}
+				if (p.plateau[j][i]==6) {//passage
+					
+					crayon.setColor(Color.BLUE);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+					
+			}
+				if (p.plateau[j][i]==3) {//piege
+					
+					crayon.setColor(Color.RED);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+					
+			}
+		
+			}
+		}
+		
+	}
+	public void DessinerPlateau5(BufferedImage im,Plateau5 p,int niveau) {
+		Graphics2D crayon = (Graphics2D) im.getGraphics();
+		crayon.setPaint(Color.red);
+		crayon.setFont(new Font("Microsoft YaHei", Font.PLAIN, 40));
+        String s = "Niveau " + niveau;
+        crayon.drawString(s, p.taille*18, p.taille*40+60);
+
+		for (int i=0; i<p.taille ;i++) {
+			for (int j=0; j<p.taille ;j++) {
+				if (p.plateau[j][i]==10) {//murs contour
+					
+					crayon.setColor(Color.DARK_GRAY);
+					crayon.fillRect(i*40, j*40 , 40, 40);
+					}
+				if (p.plateau[j][i]==1) {//murs
+					
+					crayon.setColor(Color.DARK_GRAY);
+					crayon.fillRect(i*40, j*40 , 40, 40);
+					}
+				if (p.plateau[j][i]==2) {//heros
+					
+					crayon.setColor(Color.MAGENTA);
+			crayon.fillOval(i*40, j*40 , 40, 40);
+			}
+				if (p.plateau[j][i]==5) {//tresor
+					
+					crayon.setColor(Color.YELLOW);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+					
+			}
+				if (p.plateau[j][i]==6) {//passage
+					
+					crayon.setColor(Color.BLUE);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+					
+			}
+				if (p.plateau[j][i]==3) {//piege
+					
+					crayon.setColor(Color.RED);
+					crayon.fillOval(i*40, j*40 , 40, 40);
+					
+			}
+		
+			}
+		}
+		
+	}
 	@Override
 	public int getWidth() {
 		return WIDTH;

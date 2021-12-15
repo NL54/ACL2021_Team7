@@ -24,6 +24,9 @@ public class Jeu implements Game {
 	//Heros h=new Heros ("helpFilePacman.txt",3);
 	Plateau1 p1;
 	Plateau2 p2;
+	Plateau3 p3;
+	Plateau4 p4;
+	Plateau5 p5;
 	Heros h;
 	int niveau;
 	public boolean fin;
@@ -31,6 +34,9 @@ public class Jeu implements Game {
 		fin=false;
 		p1 = new Plateau1();
 		p2= new Plateau2();
+		p3=new Plateau3();
+		p4=new Plateau4();
+		p5=new Plateau5();
 		h=new Heros(3);
 	
 		niveau=1;
@@ -61,9 +67,31 @@ public class Jeu implements Game {
 				} 
 			
 			else if (activeMagie(niveau,commande)) {
+				if (niveau==1) {
 				p1.plateau[1][1]=2;
 				
 				p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+				}
+				if (niveau==2) {
+					p2.plateau[1][1]=2;
+					
+					p2.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+					}
+				if (niveau==3) {
+					p3.plateau[1][1]=2;
+					
+					p3.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+					}
+				if (niveau==4) {
+					p4.plateau[1][1]=2;
+					
+					p4.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+					}
+				if (niveau==5) {
+					p5.plateau[1][1]=2;
+					
+					p5.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+					}
 				} 
 			else if (activePiege(niveau,commande)) {
 				h.perdpointdevie(1);
@@ -184,6 +212,27 @@ public class Jeu implements Game {
 						y=j;
 					}
 				}
+				if (niveau==3) {
+					if (p3.plateau[j][i]==2) {;
+						pos= p3.plateau[j][i];
+						x=i;
+						y=j;
+					}
+				}
+				if (niveau==4) {
+					if (p4.plateau[j][i]==2) {;
+						pos= p4.plateau[j][i];
+						x=i;
+						y=j;
+					}
+				}
+				if (niveau==5) {
+					if (p5.plateau[j][i]==2) {;
+						pos= p5.plateau[j][i];
+						x=i;
+						y=j;
+					}
+				}
 			}
 	}
 		int position []= {x,y};
@@ -198,6 +247,15 @@ public class Jeu implements Game {
 					}
 		if(niveau==2) {
 			pos=p2.plateau[y][x];
+		}
+		if(niveau==3) {
+			pos=p3.plateau[y][x];
+		}
+		if(niveau==4) {
+			pos=p4.plateau[y][x];
+		}
+		if(niveau==5) {
+			pos=p5.plateau[y][x];
 		}
 		return pos;
 	}
@@ -219,7 +277,7 @@ public class Jeu implements Game {
 			posfutur[0]= getPosHeros(niveau)[0];
 			posfutur[1]= getPosHeros(niveau)[1]+1;
 		}
-		if (getPos(posfutur,niveau)==5) {
+		if (getPos(posfutur,niveau)==6) {
 			return true;
 		}
 		return false;
@@ -289,12 +347,11 @@ public class Jeu implements Game {
 			posfutur[0]= getPosHeros(niveau)[0];
 			posfutur[1]= getPosHeros(niveau)[1]+1;
 		}
-		if (getPos(posfutur,niveau)==6) {
+		if (getPos(posfutur,niveau)==5) {
 			return true;
 		}
 		return false;
 	}
-	
 	//methode pour deplacer le hero
 	int[]pos;
 	public void deplacer(Cmd commande, int niveau){
@@ -302,140 +359,188 @@ public class Jeu implements Game {
 			pos=getPosHeros(niveau);
 			if(niveau==1) {
 				
-				if(p1.plateau[pos[1]][pos[0]-1]!=1 || p1.plateau[pos[1]][pos[0]-1]!=10){
+				if(p1.plateau[pos[1]][pos[0]-1]!=1){
+					if (p1.plateau[pos[1]][pos[0]-1]!=10) {
 					p1.plateau[pos[1]][pos[0]-1]=2;
 					p1.plateau[pos[1]][pos[0]]=0;
 					
 				}
-				
+				}
 			}
 			if(niveau==2) {
-				if(p2.plateau[pos[1]][pos[0]-1]!=1 || p2.plateau[pos[1]][pos[0]-1]!=10 ){
+				if(p2.plateau[pos[1]][pos[0]-1]!=1){
+					if (p2.plateau[pos[1]][pos[0]-1]!=10){
 					p2.plateau[pos[1]][pos[0]-1]=2;
 					p2.plateau[pos[1]][pos[0]]=0;
 					
 				}
-				
+				}
 			}
 			if(niveau==3) {
-				if(p3.plateau[pos[1]][pos[0]-1]!=1 || p3.plateau[pos[1]][pos[0]-1]!=10 ){
+				if(p3.plateau[pos[1]][pos[0]-1]!=1){
+					if (p3.plateau[pos[1]][pos[0]-1]!=10){
 					p3.plateau[pos[1]][pos[0]-1]=2;
 					p3.plateau[pos[1]][pos[0]]=0;
+				}
+			}
 			}
 			if (niveau==4) {
-				if(p4.plateau[pos[1]][pos[0]-1]!=1 || p4.plateau[pos[1]][pos[0]-1]!=10 ){
+				if(p4.plateau[pos[1]][pos[0]-1]!=1){
+					if (p4.plateau[pos[1]][pos[0]-1]!=10){
 					p4.plateau[pos[1]][pos[0]-1]=2;
 					p4.plateau[pos[1]][pos[0]]=0;
 			}
+			}
+			}
 			if (niveau==5) {
-				if(p5.plateau[pos[1]][pos[0]-1]!=1 || p5.plateau[pos[1]][pos[0]-1]!=10 ){
+				if(p5.plateau[pos[1]][pos[0]-1]!=1){
+					if (p5.plateau[pos[1]][pos[0]-1]!=10){
 					p5.plateau[pos[1]][pos[0]-1]=2;
 					p5.plateau[pos[1]][pos[0]]=0;
 			}
 		}
+		}
+		}	
 		if (commande==Cmd.RIGHT) {
 			pos=getPosHeros(niveau);
 			if(niveau==1) {
-				if(p1.plateau[pos[1]][pos[0]+1]!=1 || p1.plateau[pos[1]][pos[0]+1]!=10 ){
+				if(p1.plateau[pos[1]][pos[0]+1]!=1){
+					if(p1.plateau[pos[1]][pos[0]+1]!=10) {
+				
 					p1.plateau[pos[1]][pos[0]+1]=2;
 					p1.plateau[pos[1]][pos[0]]=0;
 					
 				}
+				}
 				
 			}
 			if(niveau==2) {
-				if(p2.plateau[pos[1]][pos[0]+1]!=1 || p2.plateau[pos[1]][pos[0]+1]!=10){
+				if(p2.plateau[pos[1]][pos[0]+1]!=1){
+					if(p2.plateau[pos[1]][pos[0]+1]!=10){
 					p2.plateau[pos[1]][pos[0]+1]=2;
 					p2.plateau[pos[1]][pos[0]]=0;
 					
 				}
 				
 			}
+			}
 			if(niveau==3) {
-				if(p3.plateau[pos[1]][pos[0]+1]!=1 || p3.plateau[pos[1]][pos[0]+1]!=10){
+				if(p3.plateau[pos[1]][pos[0]+1]!=1){
+					if(p3.plateau[pos[1]][pos[0]+1]!=10){
 					p3.plateau[pos[1]][pos[0]+1]=2;
 					p3.plateau[pos[1]][pos[0]]=0;
+					}
+			}
 			}
 			if(niveau==4) {
-				if(p4.plateau[pos[1]][pos[0]+1]!=1 || p4.plateau[pos[1]][pos[0]+1]!=10){
+				if(p4.plateau[pos[1]][pos[0]+1]!=1){
+					if(p4.plateau[pos[1]][pos[0]+1]!=10){
 					p4.plateau[pos[1]][pos[0]+1]=2;
 					p4.plateau[pos[1]][pos[0]]=0;
 			}
+			}
+			}
 			if(niveau==5) {
-				if(p5.plateau[pos[1]][pos[0]+1]!=1 || p5.plateau[pos[1]][pos[0]+1]!=10){
+				if(p5.plateau[pos[1]][pos[0]+1]!=1){
+					if(p5.plateau[pos[1]][pos[0]+1]!=10){
 					p5.plateau[pos[1]][pos[0]+1]=2;
 					p5.plateau[pos[1]][pos[0]]=0;
+			}
+		}
 			}
 		}
 		if (commande==Cmd.UP) {
 			pos=getPosHeros(niveau);
 			if(niveau==1) {
-				if(p1.plateau[pos[1]-1][pos[0]]!=1 || p1.plateau[pos[1]-1][pos[0]]!=10){
+				if(p1.plateau[pos[1]-1][pos[0]]!=1){
+					if (p1.plateau[pos[1]-1][pos[0]]!=10) {
 					p1.plateau[pos[1]-1][pos[0]]=2;
 					p1.plateau[pos[1]][pos[0]]=0;
 					
 				}
+				}
 				
 			}
 			if(niveau==2) {
-				if(p2.plateau[pos[1]-1][pos[0]]!=1 || p2.plateau[pos[1]-1][pos[0]]!=10){
+				if(p2.plateau[pos[1]-1][pos[0]]!=1){
+					if (p2.plateau[pos[1]-1][pos[0]]!=10){
 					p2.plateau[pos[1]-1][pos[0]]=2;
 					p2.plateau[pos[1]][pos[0]]=0;
 					
 				}
-				
+				}
 			}
 			if(niveau==3) {
-				if(p3.plateau[pos[1]-1][pos[0]]!=1 || p3.plateau[pos[1]-1][pos[0]]!=10){
+				if(p3.plateau[pos[1]-1][pos[0]]!=1){
+					if (p3.plateau[pos[1]-1][pos[0]]!=10){
 					p3.plateau[pos[1]-1][pos[0]]=2;
 					p3.plateau[pos[1]][pos[0]]=0;
 			}
+				}
+			}
 			if(niveau==4) {
-				if(p4.plateau[pos[1]-1][pos[0]]!=1 || p4.plateau[pos[1]-1][pos[0]]!=10){
+				if(p4.plateau[pos[1]-1][pos[0]]!=1){
+					if (p4.plateau[pos[1]-1][pos[0]]!=10){
 					p4.plateau[pos[1]-1][pos[0]]=2;
 					p4.plateau[pos[1]][pos[0]]=0;
 			}
+			}
+			}
 			if(niveau==5) {
-				if(p5.plateau[pos[1]-1][pos[0]]!=1 || p5.plateau[pos[1]-1][pos[0]]!=10){
+				if(p5.plateau[pos[1]-1][pos[0]]!=1){
+					if (p5.plateau[pos[1]-1][pos[0]]!=10){
 					p5.plateau[pos[1]-1][pos[0]]=2;
 					p5.plateau[pos[1]][pos[0]]=0;
 			}
 			
 		}
+			}
+			}
 		if (commande==Cmd.DOWN) {
 			pos=getPosHeros(niveau);
 			if(niveau==1) {
-				if(p1.plateau[pos[1]+1][pos[0]]!=1 || p1.plateau[pos[1]+1][pos[0]]!=10){
+				if(p1.plateau[pos[1]+1][pos[0]]!=1 ){
+					if (p1.plateau[pos[1]+1][pos[0]]!=10) {
 					p1.plateau[pos[1]+1][pos[0]]=2;
 					p1.plateau[pos[1]][pos[0]]=0;
 					
 				}
-				
+				}
 			}
 			if(niveau==2) {
-				if(p2.plateau[pos[1]+1][pos[0]]!=1 || p2.plateau[pos[1]+1][pos[0]]!=10){
+				if(p2.plateau[pos[1]+1][pos[0]]!=1 ){
+					if (p2.plateau[pos[1]+1][pos[0]]!=10){
 					p2.plateau[pos[1]+1][pos[0]]=2;
 					p2.plateau[pos[1]][pos[0]]=0;
 					
 				}
-				
+				}
 			}
 			if(niveau==3) {
-				if(p3.plateau[pos[1]+1][pos[0]]!=1 || p3.plateau[pos[1]+1][pos[0]]!=10){
+				if(p3.plateau[pos[1]+1][pos[0]]!=1 ){
+					if (p3.plateau[pos[1]+1][pos[0]]!=10){
 					p3.plateau[pos[1]+1][pos[0]]=2;
 					p3.plateau[pos[1]][pos[0]]=0;
 			}
+			}
+			}
 			if(niveau==4) {
-				if(p4.plateau[pos[1]+1][pos[0]]!=1 || p4.plateau[pos[1]+1][pos[0]]!=10){
+				if(p4.plateau[pos[1]+1][pos[0]]!=1 ){
+					if (p4.plateau[pos[1]+1][pos[0]]!=10){
 					p4.plateau[pos[1]+1][pos[0]]=2;
 					p4.plateau[pos[1]][pos[0]]=0;
 			}
+			}
+			}
 			if(niveau==5) {
-				if(p5.plateau[pos[1]+1][pos[0]]!=1 || p5.plateau[pos[1]+1][pos[0]]!=10){
+				if(p5.plateau[pos[1]+1][pos[0]]!=1 ){
+					if (p5.plateau[pos[1]+1][pos[0]]!=10){
 					p5.plateau[pos[1]+1][pos[0]]=2;
 					p5.plateau[pos[1]][pos[0]]=0;
-			}
+				}
 			
+				}
+			}
 		}
 		
 	}
