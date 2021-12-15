@@ -1,18 +1,18 @@
 package model;
-
-
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Monstre{
+	public String image;
 	private int point_de_vie;
 	private int position_x;
 	private int position_y;
-	this.image = "monstre";
+	
 	public Monstre(int point_de_vie, int position_x, int position_y) {
 		this.point_de_vie = point_de_vie;
 		this.position_x = position_x;
 		this.position_y = position_y;
+		this.image = "monstre";
 	}
 	public boolean testVivant() {
 		return (point_de_vie > 0);
@@ -85,5 +85,4 @@ public class Monstre{
 				return !(L.laby[y][x].testPresence());
 		}
 	}
-}
 }
