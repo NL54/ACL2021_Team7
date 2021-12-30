@@ -77,7 +77,7 @@ public class Painter implements GamePainter {
 					crayon.setColor(Color.DARK_GRAY);
 					crayon.fillRect(i * 40, j * 40, 40, 40);
 				}
-				if (p.plateau[j][i] == 2) {// heros
+				if (p.plateau[j][i] == 2) {// hero
 					try {
 						File file = new File(
 								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\heros.png");
