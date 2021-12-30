@@ -131,9 +131,14 @@ public class Painter implements GamePainter {
 					crayon.fillRect(i * 40, j * 40, 40, 40);
 				}
 				if (p.plateau[j][i] == 2) {// heros
-
-					crayon.setColor(Color.MAGENTA);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\heros.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
@@ -179,9 +184,14 @@ public class Painter implements GamePainter {
 					crayon.fillRect(i * 40, j * 40, 40, 40);
 				}
 				if (p.plateau[j][i] == 2) {// heros
-
-					crayon.setColor(Color.MAGENTA);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\heros.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
@@ -227,9 +237,14 @@ public class Painter implements GamePainter {
 					crayon.fillRect(i * 40, j * 40, 40, 40);
 				}
 				if (p.plateau[j][i] == 2) {// heros
-
-					crayon.setColor(Color.MAGENTA);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\heros.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
@@ -275,9 +290,14 @@ public class Painter implements GamePainter {
 					crayon.fillRect(i * 40, j * 40, 40, 40);
 				}
 				if (p.plateau[j][i] == 2) {// heros
-
-					crayon.setColor(Color.MAGENTA);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\heros.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
