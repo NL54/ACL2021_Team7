@@ -2,7 +2,6 @@ package model;
 
 
 public class ghost extends Monstre{
-	//hello
 
 	public String image;
 	
