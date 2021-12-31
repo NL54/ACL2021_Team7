@@ -103,13 +103,22 @@ public class Painter implements GamePainter {
 
 					crayon.setColor(Color.RED);
 					crayon.fillOval(i * 40, j * 40, 40, 40);
+//					try {
+//						File file = new File(
+//								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\piege.png");
+//						BufferedImage bufferedImage2 = ImageIO.read(file);
+//						crayon.drawImage(bufferedImage2, i * 40, j * 40, 40, 40, null);
+//					} catch (IOException e) {
+//						e.printStackTrace();
+					}
+				}
 
 				}
 
 			}
-		}
+		
 
-	}
+	
 
 	public void DessinerPlateau2(BufferedImage im, Plateau2 p, int niveau) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
@@ -156,6 +165,14 @@ public class Painter implements GamePainter {
 
 					crayon.setColor(Color.RED);
 					crayon.fillOval(i * 40, j * 40, 40, 40);
+//					try {
+//						File file = new File(
+//								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\piege.png");
+//						BufferedImage bufferedImage = ImageIO.read(file);
+//						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+//					} catch (IOException e) {
+//						e.printStackTrace();
+					
 
 				}
 
