@@ -41,23 +41,66 @@ public class Painter implements GamePainter {
 	 */
 	@Override
 	public void draw(BufferedImage im) {
-		if (jeu.niveau == 1) {
-			DessinerPlateau1(im, jeu.p1, 1);
+		if (jeu.isFinished()==true) {
+			DessinerVictoire(im);
 		}
-		if (jeu.niveau == 2) {
-			DessinerPlateau2(im, jeu.p2, jeu.niveau);
-		}
-		if (jeu.niveau == 3) {
-			DessinerPlateau3(im, jeu.p3, jeu.niveau);
-		}
-		if (jeu.niveau == 4) {
-			DessinerPlateau4(im, jeu.p4, jeu.niveau);
-		}
-		if (jeu.niveau == 5) {
-			DessinerPlateau5(im, jeu.p5, jeu.niveau);
+		else {
+			if (jeu.niveau == 1) {
+				DessinerPlateau1(im, jeu.p1, 1);
+			}
+			if (jeu.niveau == 2) {
+				DessinerPlateau2(im, jeu.p2, jeu.niveau);
+			}
+			if (jeu.niveau == 3) {
+				DessinerPlateau3(im, jeu.p3, jeu.niveau);
+			}
+			if (jeu.niveau == 4) {
+				DessinerPlateau4(im, jeu.p4, jeu.niveau);
+			}
+			if (jeu.niveau == 5) {
+				DessinerPlateau5(im, jeu.p5, jeu.niveau);
+			}
+			if (jeu.isFinished()==true) {
+				DessinerVictoire(im);
+			}
 		}
 	}
-
+	public void DessinerVictoire(BufferedImage im) {
+		Graphics2D crayon = (Graphics2D) im.getGraphics();
+		BufferedImage bufferedImage;
+		File file1 = new File("tresor.png");
+		try {
+			bufferedImage = ImageIO.read(file1);
+			crayon.drawImage(bufferedImage, 8 * 40, 14*40 , 400, 400, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		File file = new File("heros.png");
+		
+		try {
+			bufferedImage = ImageIO.read(file);
+			crayon.drawImage(bufferedImage, 8 * 40, 0 , 400, 400, null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		crayon.setPaint(Color.red);
+		crayon.setFont(new Font("Microsoft YaHei", Font.PLAIN, 40));
+		String s = "BRAVO, TU AS GAGNE :)";
+		crayon.drawString(s, 15 * 18, 10 * 40 + 60);
+	
+		
+		
+	}
+	public void DessinerDefaite(BufferedImage im) {
+		Graphics2D crayon = (Graphics2D) im.getGraphics();
+		crayon.setPaint(Color.red);
+		crayon.setFont(new Font("Microsoft YaHei", Font.PLAIN, 40));
+		String s = "BRAVO, TU AS PERDU :)";
+		crayon.drawString(s, 15 * 18, 10 * 40 + 60);
+	}
 	public void DessinerPlateau1(BufferedImage im, Plateau1 p, int niveau) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
 		crayon.setPaint(Color.red);
@@ -80,7 +123,7 @@ public class Painter implements GamePainter {
 				if (p.plateau[j][i] == 2) {// hero
 					try {
 						File file = new File(
-								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\heros.png");
+								"heros.png");
 						BufferedImage bufferedImage = ImageIO.read(file);
 						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
 					} catch (IOException e) {
@@ -142,7 +185,7 @@ public class Painter implements GamePainter {
 				if (p.plateau[j][i] == 2) {// heros
 					try {
 						File file = new File(
-								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\heros.png");
+								"heros.png");
 						BufferedImage bufferedImage = ImageIO.read(file);
 						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
 					} catch (IOException e) {
@@ -203,7 +246,7 @@ public class Painter implements GamePainter {
 				if (p.plateau[j][i] == 2) {// heros
 					try {
 						File file = new File(
-								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\heros.png");
+								"heros.png");
 						BufferedImage bufferedImage = ImageIO.read(file);
 						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
 					} catch (IOException e) {
@@ -256,7 +299,7 @@ public class Painter implements GamePainter {
 				if (p.plateau[j][i] == 2) {// heros
 					try {
 						File file = new File(
-								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\heros.png");
+								"heros.png");
 						BufferedImage bufferedImage = ImageIO.read(file);
 						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
 					} catch (IOException e) {
@@ -309,7 +352,7 @@ public class Painter implements GamePainter {
 				if (p.plateau[j][i] == 2) {// heros
 					try {
 						File file = new File(
-								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\heros.png");
+								"heros.png");
 						BufferedImage bufferedImage = ImageIO.read(file);
 						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
 					} catch (IOException e) {

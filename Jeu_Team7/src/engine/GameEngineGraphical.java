@@ -1,5 +1,7 @@
 package engine;
 
+import java.util.Scanner;
+
 /**
  * @author Horatiu Cirstea, Vincent Thomas
  *
@@ -27,7 +29,7 @@ public class GameEngineGraphical {
 	 * l'interface graphique
 	 */
 	private GraphicalInterface gui;
-
+	private int difficulte;
 	/**
 	 * construit un moteur
 	 * 
@@ -53,7 +55,7 @@ public class GameEngineGraphical {
 
 		// creation de l'interface graphique
 		this.gui = new GraphicalInterface(this.gamePainter,this.gameController);
-
+		
 		// boucle de game
 		while (!this.game.isFinished()) {
 			// demande controle utilisateur

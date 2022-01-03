@@ -1,5 +1,5 @@
 package model;
-
+import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import engine.Game;
  *         versions suivantes.
  * 
  */
-public class Jeu implements Game {
+public class Jeu extends Labyrinthe implements Game  {
 	
 
 	/**
@@ -30,7 +30,8 @@ public class Jeu implements Game {
 	Heros h;
 	int niveau;
 	public boolean fin;
-	public Jeu(String source) {
+	public Jeu(String source,int diff) {
+		super(diff);
 		fin=false;
 		p1 = new Plateau1();
 		p2= new Plateau2();
