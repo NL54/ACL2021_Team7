@@ -142,6 +142,12 @@ public class Painter implements GamePainter {
 					crayon.fillOval(i * 40, j * 40, 40, 40);
 
 				}
+				if (p.plateau[j][i] == 7) {// monstre
+
+					crayon.setColor(Color.GRAY);
+					crayon.fillOval(i * 40, j * 40, 40, 40);
+
+				}
 				if (p.plateau[j][i] == 3) {// piege
 
 					crayon.setColor(Color.RED);

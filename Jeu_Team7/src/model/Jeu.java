@@ -25,7 +25,7 @@ public class Jeu extends Labyrinthe implements Game  {
 	 * 
 	 */
 	//Heros h=new Heros ("helpFilePacman.txt",3);
-	Plateau1 p1;
+	public Plateau1 p1;
 	Plateau2 p2;
 	Plateau3 p3;
 	Plateau4 p4;
@@ -65,6 +65,9 @@ public class Jeu extends Labyrinthe implements Game  {
 	@Override
 	public void evolve(Cmd commande) {
 		System.out.println("Execute "+commande);
+		if (commande==Cmd.ATT) {
+			attaquer(niveau);
+		}
 		if (commande==Cmd.RIGHT) {
 			if (activePassage(niveau,commande)) {
 				niveau+=1;
@@ -548,9 +551,8 @@ public class Jeu extends Labyrinthe implements Game  {
 		}
 		
 	}
-	public void attaquer(Cmd commande, int niveau) {
+	public void attaquer( int niveau) {
 		pos=getPosHeros(niveau);
-		if(commande==Cmd.ATT) {
 			if(niveau ==1) {
 				if(p1.plateau[pos[1]+1][pos[0]]==7) {
 					p1.plateau[pos[1]+1][pos[0]]=0;
@@ -581,7 +583,7 @@ public class Jeu extends Labyrinthe implements Game  {
 					p2.plateau[pos[1]][pos[0]+1]=0;
 				}
 			}
-		}
+		
 	}
 
 
