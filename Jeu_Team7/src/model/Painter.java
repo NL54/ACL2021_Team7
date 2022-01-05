@@ -143,10 +143,14 @@ public class Painter implements GamePainter {
 
 				}
 				if (p.plateau[j][i] == 7) {// monstre
-
-					crayon.setColor(Color.GRAY);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
-
+					try {
+						File file = new File(
+								"monstre.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 3) {// piege
 

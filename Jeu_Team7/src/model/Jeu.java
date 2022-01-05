@@ -1,4 +1,6 @@
 package model;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import Test.ErreurJeu;
@@ -31,6 +33,8 @@ public class Jeu extends Labyrinthe implements Game  {
 	Plateau4 p4;
 	Plateau5 p5;
 	Heros h;
+	Monstre M = new Monstre(1,16,17);
+	Monstre M2 = new Monstre(1,4,10);
 	int niveau;
 	public boolean fin;
 	public Jeu(String source,int diff) {
@@ -103,6 +107,9 @@ public class Jeu extends Labyrinthe implements Game  {
 			else if (activePiege(niveau,commande)) {
 				h.perdpointdevie(1);
 				deplacer(commande,niveau);
+				deplace_monstre(M);
+				deplace_monstre(M2);
+				System.out.print(M.getX()+'/'+M.getY());
 				}
 			else if (Tresor(niveau,commande)) {
 				fin=true;
@@ -110,6 +117,9 @@ public class Jeu extends Labyrinthe implements Game  {
 			}
 	
 				deplacer(commande,niveau);
+				deplace_monstre(M);
+				deplace_monstre(M2);
+				System.out.print(M.getX()+'/'+M.getY());
 		
 			
 				} 
@@ -126,6 +136,9 @@ public class Jeu extends Labyrinthe implements Game  {
 			else if (activePiege(niveau,commande)) {
 				h.perdpointdevie(1);
 				deplacer(commande,niveau);
+				deplace_monstre(M);
+				deplace_monstre(M2);
+				System.out.print(M.getX()+'/'+M.getY());
 				}
 			else if (Tresor(niveau,commande)) {
 				fin=true;
@@ -133,6 +146,9 @@ public class Jeu extends Labyrinthe implements Game  {
 			}
 			
 				deplacer(commande,niveau);
+				deplace_monstre(M);
+				deplace_monstre(M2);
+				System.out.print(M.getX()+'/'+M.getY());
 			
 			
 				} 
@@ -149,6 +165,9 @@ public class Jeu extends Labyrinthe implements Game  {
 			else if (activePiege(niveau,commande)) {
 				h.perdpointdevie(1);
 				deplacer(commande,niveau);
+				deplace_monstre(M);
+				deplace_monstre(M2);
+				System.out.print(M.getX()+'/'+M.getY());
 				}
 			else if (Tresor(niveau,commande)) {
 				fin=true;
@@ -156,6 +175,9 @@ public class Jeu extends Labyrinthe implements Game  {
 			}
 		
 			deplacer(commande,niveau);
+			deplace_monstre(M);
+			deplace_monstre(M2);
+			System.out.print(M.getX()+'/'+M.getY());
 			
 			
 				} 
@@ -172,12 +194,18 @@ public class Jeu extends Labyrinthe implements Game  {
 			else if (activePiege(niveau,commande)) {
 				h.perdpointdevie(1);
 				deplacer(commande,niveau);
+				deplace_monstre(M);
+				deplace_monstre(M2);
+				System.out.print(M.getX()+'/'+M.getY());
 				}
 			else if (Tresor(niveau,commande)) {
 				fin=true;
 				System.out.println("BRAVO TU AS GAGNE");
 			}
 			deplacer(commande,niveau);
+			deplace_monstre(M);
+			deplace_monstre(M2);
+			System.out.print(M.getX()+'/'+M.getY());
 			
 			
 				} 
@@ -193,7 +221,7 @@ public class Jeu extends Labyrinthe implements Game  {
 		if (fin==true) {
 			return true;
 			} 
-		else {
+		else { 
 			return false;
 		}
 		
@@ -585,6 +613,43 @@ public class Jeu extends Labyrinthe implements Game  {
 			}
 		
 	}
+	public void deplace_monstre(Monstre m) {
+		int A = m.genererInt2(-1, 1);
+		int B = m.genererInt2(-1, 1);
+		if (p1.plateau[m.getX()-1][m.getY()] != 10 && p1.plateau[m.getX()-1][m.getY()] != 1) {
+			
+		
+			if(A == -1) { 
+				p1.plateau[m.getX()][m.getY()] = 0;
+				m.position_x = m.position_x - 1;
+				p1.plateau[m.getX()][m.getY()] = 7;
+		}
+		}
+		if (p1.plateau[m.getX()+1][m.getY()] != 10 && p1.plateau[m.getX()+1][m.getY()] != 1) {
+		
+		if(A == 1) { 
+			p1.plateau[m.getX()][m.getY()] = 0;
+			m.position_x = m.position_x +1;
+			p1.plateau[m.getX()][m.getY()] =  7;
+		}
+		}
+		if (p1.plateau[m.getX()][m.getY()-1] != 10 && p1.plateau[m.getX()][m.getY()-1] != 1) {
+		if(B == -1) { 
+			p1.plateau[m.getX()][m.getY()] = 0;
+			m.position_y = m.position_y - 1;
+			p1.plateau[m.getX()][m.getY()] =  7;
+		}
+		}
+		if (p1.plateau[m.getX()][m.getY()+1] != 10 && p1.plateau[m.getX()][m.getY()+1] != 1) {
+		if(B == 1) { 
+			p1.plateau[m.getX()][m.getY()] = 0;
+			m.position_y = m.position_y +1;
+			p1.plateau[m.getX()][m.getY()] =  7;
+		}
+		}
+
+	}
+
 
 
 }

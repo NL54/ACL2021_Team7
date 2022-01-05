@@ -4,9 +4,10 @@ import java.util.Random;
 
 public class Monstre{
 	public String image;
-	private int point_de_vie;
-	private int position_x;
-	private int position_y;
+	public int point_de_vie;
+	public int position_x;
+	public int position_y;
+	
 	
 	public Monstre(int point_de_vie, int position_x, int position_y) {
 		this.point_de_vie = point_de_vie;
@@ -20,6 +21,20 @@ public class Monstre{
 	public void subirDegat() {
 		this.point_de_vie = Math.max(this.point_de_vie - 1, 0);
 	}
+	public int genererInt2(int borneInf, int borneSup){
+        Random random = new Random();
+        int nb;
+        nb = borneInf+random.nextInt(borneSup-borneInf+1);
+        return nb;
+     }
+	public int getX () {
+		return this.position_x;
+		
+	}
+	public int getY () {
+		return this.position_y;
+	}
+	
 	public int[] deplacementAleatoire(Labyrinthe L) {
 		boolean deplac;
 		int[] coord = new int[2];
@@ -63,26 +78,14 @@ public class Monstre{
 		}	
 	}
 	public boolean test_deplacement(Labyrinthe L, int x, int y) {
-		if (!(((Math.abs(x-position_x)==1) && (Math.abs(y-position_y)==0)) || 
-				((Math.abs(x-position_x)==0) && (Math.abs(y-position_y)==1)))) {
+		if (!(((Math.abs(x-position_x)==1) && (Math.abs(y-position_y)==10)) || 
+				((Math.abs(x-position_x)==10) && (Math.abs(y-position_y)==1)))) {
 			return false;	
 		}
-		else if (x>=L.longueur || y>=L.largeur || x < 0 || y < 0) {
+		else if (x>=20 || y>=20 || x < 0 || y < 0) {
 			return false;
-		} 
-		else if (this.image.equalsIgnoreCase("ghost")) {
-			if (L.laby[y][x].testPresenceHero())
-				return true;
-			else
-				return !(L.laby[y][x].testPresence());
 		}
-		else {
-			if (L.laby[y][x].testPresenceHero())
-				return true;
-			else if (L.laby[y][x] == 10 && L.laby[y][x] == 1)
-				return false;
-			else
-				return !(L.laby[y][x].testPresence());
-		}
+		return false; 
+				
 	}
 }
