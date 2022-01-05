@@ -1,4 +1,4 @@
 Fonction design pour le montre implémentation des images : Lucas 
 Optimisation de la fonction attaque et modification des pv du héros en fct de difficulté + Junit méthode piege/tresor/magie/passage: Resa
-ajout de 2 nouveaux plateaux trésor dans 1 et 3 pour difficulté 1 et 2 + fichier labytrinthe et diagramme de classe/sequence du sprint2 : Salma
+ajout de 2 nouveaux plateaux trésor dans 1 et 3 pour difficulté 1 et 2+ mettre icone du heros (au lieu du cercle en rose) + fichier labytrinthe et diagramme de classe/sequence du sprint2 : Salma
 Ajout de difficulté + ajouter un fond d’écran diagramme de séquence et de classe +Junit deplacerHeros : Nicolas
