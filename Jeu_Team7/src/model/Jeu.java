@@ -1,5 +1,8 @@
 package model;
 import java.util.Scanner;
+
+import Test.ErreurJeu;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -193,7 +196,7 @@ public class Jeu extends Labyrinthe implements Game  {
 		
 		
 	}
-	public int[] getPosHeros(int niveau) {
+	public  int[] getPosHeros(int niveau) {
 		int pos =0;
 		int x=0;
 		int y=0;

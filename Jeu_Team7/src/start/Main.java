@@ -4,6 +4,7 @@ import model.Painter;
 
 import java.util.Scanner;
 
+import Test.ErreurJeu;
 import engine.GameEngineGraphical;
 import model.Controlleur;
 import model.Jeu;
@@ -22,7 +23,7 @@ public class Main {
 	    }
 	}
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, ErreurJeu {
 		int diff=0;
 		
 		while (diff != 1 && diff!=2 && diff!=3) {
@@ -39,7 +40,7 @@ public class Main {
 		}
 		// creation du jeu particulier et de son afficheur
 		Jeu game = new Jeu("helpFilePacman.txt",diff);
-		
+		System.out.println(game.getPosHeros(1)[1]);
 		Painter painter = new Painter(game);
 		Controlleur controller = new Controlleur();
 
