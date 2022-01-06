@@ -28,12 +28,12 @@ public class Jeu extends Labyrinthe implements Game  {
 	 */
 	//Heros h=new Heros ("helpFilePacman.txt",3);
 	public Plateau1 p1;
-	Plateau2 p2;
-	Plateau3 p3;
-	Plateau1avecfin p1f;
-	Plateau3avecfin p3f;
-	Plateau4 p4;
-	Plateau5 p5;
+	public Plateau2 p2;
+	public Plateau3 p3;
+	public Plateau1avecfin p1f;
+	public Plateau3avecfin p3f;
+	public Plateau4 p4;
+	public Plateau5 p5;
 	Heros h;
 	Monstre M = new Monstre(1,16,17);
 	Monstre M2 = new Monstre(1,4,10);
@@ -42,6 +42,7 @@ public class Jeu extends Labyrinthe implements Game  {
 	int niveaumax;
 	public Jeu(String source,int diff) {
 		super(diff);
+		h= new Heros(3);
 		niveaumax=super.Niveaumax();
 		fin=false;
 		p1 = new Plateau1();
