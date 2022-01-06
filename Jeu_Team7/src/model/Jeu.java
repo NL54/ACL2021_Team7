@@ -40,10 +40,12 @@ public class Jeu extends Labyrinthe implements Game  {
 	int niveau;
 	public boolean fin;
 	int niveaumax;
+	int hpmax;
 	public Jeu(String source,int diff) {
 		super(diff);
-		h= new Heros(3);
 		niveaumax=super.Niveaumax();
+		hpmax=super.Hpmax();
+		h= new Heros(hpmax);
 		fin=false;
 		p1 = new Plateau1();
 		p2= new Plateau2();
@@ -770,6 +772,54 @@ public class Jeu extends Labyrinthe implements Game  {
 	}
 	public void attaquer( int niveau) {
 		pos=getPosHeros(niveau);
+		if (niveau==niveaumax) {
+			if(niveau ==1) {
+				if(p1f.plateau[pos[1]+1][pos[0]]==7) {
+					p1f.plateau[pos[1]+1][pos[0]]=0;
+				}
+				
+				if(p1f.plateau[pos[1]-1][pos[0]]==7) {
+					p1f.plateau[pos[1]-1][pos[0]]=0;
+				}
+				if(p1f.plateau[pos[1]][pos[0]-1]==7) {
+					p1f.plateau[pos[1]][pos[0]-1]=0;
+				}
+				if(p1f.plateau[pos[1]][pos[0]+1]==7) {
+					p1f.plateau[pos[1]][pos[0]+1]=0;
+				}
+			}
+			if(niveau ==3) {
+				if(p3f.plateau[pos[1]+1][pos[0]]==7) {
+					p3f.plateau[pos[1]+1][pos[0]]=0;
+				}
+				
+				if(p3f.plateau[pos[1]-1][pos[0]]==7) {
+					p3f.plateau[pos[1]-1][pos[0]]=0;
+				}
+				if(p3f.plateau[pos[1]][pos[0]-1]==7) {
+					p3f.plateau[pos[1]][pos[0]-1]=0;
+				}
+				if(p3f.plateau[pos[1]][pos[0]+1]==7) {
+					p3f.plateau[pos[1]][pos[0]+1]=0;
+				}
+			}
+			if(niveau ==5) {
+				if(p5.plateau[pos[1]+1][pos[0]]==7) {
+					p5.plateau[pos[1]+1][pos[0]]=0;
+				}
+				
+				if(p5.plateau[pos[1]-1][pos[0]]==7) {
+					p5.plateau[pos[1]-1][pos[0]]=0;
+				}
+				if(p5.plateau[pos[1]][pos[0]-1]==7) {
+					p5.plateau[pos[1]][pos[0]-1]=0;
+				}
+				if(p5.plateau[pos[1]][pos[0]+1]==7) {
+					p5.plateau[pos[1]][pos[0]+1]=0;
+				}
+			}
+		}
+		else {
 			if(niveau ==1) {
 				if(p1.plateau[pos[1]+1][pos[0]]==7) {
 					p1.plateau[pos[1]+1][pos[0]]=0;
@@ -800,6 +850,22 @@ public class Jeu extends Labyrinthe implements Game  {
 					p2.plateau[pos[1]][pos[0]+1]=0;
 				}
 			}
+			if(niveau==3) {
+				if(p3.plateau[pos[1]+1][pos[0]]==7) {
+					p3.plateau[pos[1]+1][pos[0]]=0;
+				}
+				
+				if(p3.plateau[pos[1]-1][pos[0]]==7) {
+					p3.plateau[pos[1]-1][pos[0]]=0;
+				}
+				if(p3.plateau[pos[1]][pos[0]-1]==7) {
+					p3.plateau[pos[1]][pos[0]-1]=0;
+				}
+				if(p3.plateau[pos[1]][pos[0]+1]==7) {
+					p3.plateau[pos[1]][pos[0]+1]=0;
+				}
+			}
+		}
 		
 	}
 	public void deplace_monstre(Monstre m) {

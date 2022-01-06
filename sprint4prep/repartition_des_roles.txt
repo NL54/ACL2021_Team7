@@ -1,0 +1,4 @@
+Salma : Labyrinthe en fichier + amélioration de l'interface graphique
+Lucas : Finition des monstres et mettre des images sur tout les objets/murs
+Resa : TestJunit
+Nicolas : Finition du jeu (game over) + ajout de page de bienvenue + aide les autres

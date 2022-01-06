@@ -74,7 +74,7 @@ class TestHeros {
 	public void testAtqSimple() { // on considere que tout les monstres ont 1 pv et le heros attaque autour de lui
 		this.jeu.deplacer(Cmd.DOWN, niveau);
 		this.jeu.deplacer(Cmd.ATT, niveau);
-		assertTrue(this.jeu.p1.plateau[3][1]==7);
+		assertTrue(this.jeu.p1f.plateau[3][1]==7);
 		
 	}
 	

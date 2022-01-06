@@ -48,12 +48,15 @@ public class Painter implements GamePainter {
 			if (jeu.niveau==jeu.niveaumax) {
 				if (jeu.niveau==1) {
 					DessinerPlateau1avecfin(im,jeu.p1f,jeu.niveau);
+					DessinerHP(im, jeu.h.Hp);
 				}
 				if (jeu.niveau==3) {
 					DessinerPlateau3avecfin(im,jeu.p3f,jeu.niveau);
+					DessinerHP(im, jeu.h.Hp);
 				}
 				if (jeu.niveau==5) {
 					DessinerPlateau5(im,jeu.p5,jeu.niveau);
+					DessinerHP(im, jeu.h.Hp);
 				}
 				if (jeu.isFinished()==true) {
 					DessinerVictoire(im);
@@ -63,22 +66,34 @@ public class Painter implements GamePainter {
 			else {
 				if (jeu.niveau == 1) {
 					DessinerPlateau1(im, jeu.p1, 1);
+					DessinerHP(im, jeu.h.Hp);
 				}
 				if (jeu.niveau == 2) {
 					DessinerPlateau2(im, jeu.p2, jeu.niveau);
+					DessinerHP(im, jeu.h.Hp);
 				}
 				if (jeu.niveau == 3) {
 					DessinerPlateau3(im, jeu.p3, jeu.niveau);
+					DessinerHP(im, jeu.h.Hp);
 				}
 				if (jeu.niveau == 4) {
 					DessinerPlateau4(im, jeu.p4, jeu.niveau);
+					DessinerHP(im, jeu.h.Hp);
 				}
 				if (jeu.niveau == 5) {
 					DessinerPlateau5(im, jeu.p5, jeu.niveau);
+					DessinerHP(im, jeu.h.Hp);
 				}
 				
 			}
 		}
+	}
+	public void DessinerHP(BufferedImage im, int hp) {
+		Graphics2D crayon = (Graphics2D) im.getGraphics();
+		crayon.setPaint(Color.red);
+		crayon.setFont(new Font("Microsoft YaHei", Font.PLAIN, 40));
+		String s = "HP :"+ hp;
+		crayon.drawString(s, 33 * 25, 10 * 40 + 60);
 	}
 	public void DessinerVictoire(BufferedImage im) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
