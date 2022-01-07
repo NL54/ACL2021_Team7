@@ -7,12 +7,13 @@ import org.junit.jupiter.api.Test;
 
 import engine.Cmd;
 import model.Jeu;
+import model.Monstre;
 
 class JeuTest {
 
 	private int niveau;
 	private Jeu jeu;
-	private Cmd commande;
+	Monstre M = new Monstre(1,8,14);
 	private Jeu jeu2;
 	@BeforeEach
 	void setUp()  {
@@ -148,6 +149,28 @@ class JeuTest {
 		jeu2.activePassage(niveau, Cmd.LEFT);
 		assertTrue(jeu2.activePassage(niveau, Cmd.LEFT));
 	}
+	
+	//Test deplacerMonstre
+	@Test
+	void testDeplacerMonstre() { //le monstre M a la position [8,14][y,x]
+		jeu.deplace_monstre(M);
+		boolean test = false;
+		if(jeu.p1.plateau[8][15]==7) { // si le monstres'est deplacé à droite
+			test=true;
+		}
+		else if(jeu.p1.plateau[8][13]==7) { // si le monstres'est deplacé à gauche
+			test=true;
+		}
+		else if(jeu.p1.plateau[9][14]==7) { // si le monstres'est deplacé en bas
+			test=true;
+		}
+		else if(jeu.p1.plateau[7][14]==7) { // si le monstres'est deplacé en haut
+			test=true;
+		}
+		assertTrue(test);
+		
+	}
+	
 	
 	
 }
