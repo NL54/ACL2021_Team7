@@ -40,9 +40,20 @@ public class Painter implements GamePainter {
 	 * methode redefinie de Afficheur retourne une image du jeu
 	 */
 	@Override
-	public void draw(BufferedImage im) {
+public void draw(BufferedImage im) {
+		
 		if (jeu.isFinished()==true) {
-			DessinerVictoire(im);
+			if (jeu.acceuil==true) {
+				DessinerAcceuil(im);
+			}
+			else {
+				if (jeu.gagner==true){
+						DessinerVictoire(im);
+				}
+				else {
+					DessinerDefaite(im);
+				}
+			}
 		}
 		else {
 			if (jeu.niveau==jeu.niveaumax) {
@@ -87,6 +98,16 @@ public class Painter implements GamePainter {
 				
 			}
 		}
+	}
+	public void DessinerAcceuil(BufferedImage im) {
+		Graphics2D crayon = (Graphics2D) im.getGraphics();
+		crayon.setPaint(Color.red);
+		crayon.setFont(new Font("Microsoft YaHei", Font.PLAIN, 40));
+		String s =  "Bienvenue! Choisissez la difficulté (1,2,3)";
+		crayon.drawString(s, 10*10, 10 * 40 + 60);
+		crayon.setFont(new Font("Microsoft YaHei", Font.PLAIN, 40));
+		String s1 =  "Dans la console";
+		crayon.drawString(s1, 35*10, 12 * 40 + 60);
 	}
 	public void DessinerHP(BufferedImage im, int hp) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
@@ -142,13 +163,35 @@ public class Painter implements GamePainter {
 			for (int j = 0; j < p.taille; j++) {
 				if (p.plateau[j][i] == 10) {// murs contour
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 0) {
+					try {
+						File file = new File(
+								"sol.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 1) {// murs
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 2) {// hero
 					try {
@@ -162,14 +205,26 @@ public class Painter implements GamePainter {
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
-					crayon.setColor(Color.YELLOW);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"tresor.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 				}
 				if (p.plateau[j][i] == 6) {// passage
 
-					crayon.setColor(Color.BLUE);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"passage.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 				}
 				if (p.plateau[j][i] == 7) {// monstre
@@ -182,21 +237,51 @@ public class Painter implements GamePainter {
 						e.printStackTrace();
 					}
 				}
+				if (p.plateau[j][i] == 8) {// monstre
+					try {
+						File file = new File(
+								"Ghost.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 9) {// monstre
+					try {
+						File file = new File(
+								"Ghost_mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 4) {// monstre
+					try {
+						File file = new File(
+								"magie.png");
+						
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 				if (p.plateau[j][i] == 3) {// piege
 
-					crayon.setColor(Color.RED);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
-//					try {
-//						File file = new File(
-//								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\piege.png");
-//						BufferedImage bufferedImage2 = ImageIO.read(file);
-//						crayon.drawImage(bufferedImage2, i * 40, j * 40, 40, 40, null);
-//					} catch (IOException e) {
-//						e.printStackTrace();
+					try {
+						File file = new File(
+								"piege.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
 					}
 				}
 
 				}
+		}
 
 			}
 	public void DessinerPlateau1avecfin(BufferedImage im, Plateau1avecfin p, int niveau) {
@@ -210,13 +295,35 @@ public class Painter implements GamePainter {
 			for (int j = 0; j < p.taille; j++) {
 				if (p.plateau[j][i] == 10) {// murs contour
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 0) {
+					try {
+						File file = new File(
+								"sol.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 1) {// murs
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 2) {// hero
 					try {
@@ -230,14 +337,26 @@ public class Painter implements GamePainter {
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
-					crayon.setColor(Color.YELLOW);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"tresor1.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 				}
 				if (p.plateau[j][i] == 6) {// passage
 
-					crayon.setColor(Color.BLUE);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"passage.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 				}
 				if (p.plateau[j][i] == 7) {// monstre
@@ -250,10 +369,47 @@ public class Painter implements GamePainter {
 						e.printStackTrace();
 					}
 				}
+				if (p.plateau[j][i] == 8) {// monstre
+					try {
+						File file = new File(
+								"Ghost.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 9) {// monstre
+					try {
+						File file = new File(
+								"Ghost_mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 4) {// monstre
+					try {
+						File file = new File(
+								"magie.png");
+						
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 				if (p.plateau[j][i] == 3) {// piege
 
-					crayon.setColor(Color.RED);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"piege.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 //					try {
 //						File file = new File(
 //								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\piege.png");
@@ -279,13 +435,35 @@ public class Painter implements GamePainter {
 			for (int j = 0; j < p.taille; j++) {
 				if (p.plateau[j][i] == 10) {// murs contour
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 0) {
+					try {
+						File file = new File(
+								"sol.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 1) {// murs
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 2) {// hero
 					try {
@@ -299,14 +477,26 @@ public class Painter implements GamePainter {
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
-					crayon.setColor(Color.YELLOW);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"tresor1.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 				}
 				if (p.plateau[j][i] == 6) {// passage
 
-					crayon.setColor(Color.BLUE);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"passage.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 				}
 				if (p.plateau[j][i] == 7) {// monstre
@@ -319,23 +509,54 @@ public class Painter implements GamePainter {
 						e.printStackTrace();
 					}
 				}
-				if (p.plateau[j][i] == 3) {// piege
-
-					crayon.setColor(Color.RED);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
-//					try {
-//						File file = new File(
-//								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\piege.png");
-//						BufferedImage bufferedImage2 = ImageIO.read(file);
-//						crayon.drawImage(bufferedImage2, i * 40, j * 40, 40, 40, null);
-//					} catch (IOException e) {
-//						e.printStackTrace();
+				if (p.plateau[j][i] == 8) {// monstre
+					try {
+						File file = new File(
+								"Ghost.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
 					}
 				}
-
+				if (p.plateau[j][i] == 9) {// monstre
+					try {
+						File file = new File(
+								"Ghost_mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
+				if (p.plateau[j][i] == 4) {// monstre
+					try {
+						File file = new File(
+								"magie.png");
+						
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 3) {// piege
 
+					try {
+						File file = new File(
+								"piege.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 			}
+		}
+	}
+
+			
+			
 
 	
 
@@ -350,15 +571,37 @@ public class Painter implements GamePainter {
 			for (int j = 0; j < p.taille; j++) {
 				if (p.plateau[j][i] == 10) {// murs contour
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 0) {
+					try {
+						File file = new File(
+								"sol.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 1) {// murs
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
-				if (p.plateau[j][i] == 2) {// heros
+				if (p.plateau[j][i] == 2) {// hero
 					try {
 						File file = new File(
 								"heros.png");
@@ -370,29 +613,79 @@ public class Painter implements GamePainter {
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
-					crayon.setColor(Color.YELLOW);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"tresor1.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 				}
 				if (p.plateau[j][i] == 6) {// passage
 
-					crayon.setColor(Color.BLUE);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"passage.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
+				}
+				if (p.plateau[j][i] == 7) {// monstre
+					try {
+						File file = new File(
+								"monstre.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 8) {// monstre
+					try {
+						File file = new File(
+								"Ghost.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 9) {// monstre
+					try {
+						File file = new File(
+								"Ghost_mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 4) {// monstre
+					try {
+						File file = new File(
+								"magie.png");
+						
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 3) {// piege
 
-					crayon.setColor(Color.RED);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
-//					try {
-//						File file = new File(
-//								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\piege.png");
-//						BufferedImage bufferedImage = ImageIO.read(file);
-//						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
-//					} catch (IOException e) {
-//						e.printStackTrace();
-					
-
+					try {
+						File file = new File(
+								"piege.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 
 			}
@@ -411,15 +704,37 @@ public class Painter implements GamePainter {
 			for (int j = 0; j < p.taille; j++) {
 				if (p.plateau[j][i] == 10) {// murs contour
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 0) {
+					try {
+						File file = new File(
+								"sol.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 1) {// murs
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
-				if (p.plateau[j][i] == 2) {// heros
+				if (p.plateau[j][i] == 2) {// hero
 					try {
 						File file = new File(
 								"heros.png");
@@ -431,24 +746,81 @@ public class Painter implements GamePainter {
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
-					crayon.setColor(Color.YELLOW);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"tresor1.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 				}
 				if (p.plateau[j][i] == 6) {// passage
 
-					crayon.setColor(Color.BLUE);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"passage.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
+				}
+				if (p.plateau[j][i] == 7) {// monstre
+					try {
+						File file = new File(
+								"monstre.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 8) {// monstre
+					try {
+						File file = new File(
+								"Ghost.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 9) {// monstre
+					try {
+						File file = new File(
+								"Ghost_mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 4) {// monstre
+					try {
+						File file = new File(
+								"magie.png");
+						
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 3) {// piege
 
-					crayon.setColor(Color.RED);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
-
+					try {
+						File file = new File(
+								"piege.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
-
-			}
+		}
 		}
 
 	}
@@ -464,15 +836,37 @@ public class Painter implements GamePainter {
 			for (int j = 0; j < p.taille; j++) {
 				if (p.plateau[j][i] == 10) {// murs contour
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 0) {
+					try {
+						File file = new File(
+								"sol.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 1) {// murs
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
-				if (p.plateau[j][i] == 2) {// heros
+				if (p.plateau[j][i] == 2) {// hero
 					try {
 						File file = new File(
 								"heros.png");
@@ -484,21 +878,79 @@ public class Painter implements GamePainter {
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
-					crayon.setColor(Color.YELLOW);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"tresor1.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 				}
 				if (p.plateau[j][i] == 6) {// passage
 
-					crayon.setColor(Color.BLUE);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"passage.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
+				}
+				if (p.plateau[j][i] == 7) {// monstre
+					try {
+						File file = new File(
+								"monstre.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 8) {// monstre
+					try {
+						File file = new File(
+								"Ghost.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 9) {// monstre
+					try {
+						File file = new File(
+								"Ghost_mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 4) {// monstre
+					try {
+						File file = new File(
+								"magie.png");
+						
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 3) {// piege
 
-					crayon.setColor(Color.RED);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
-
+					try {
+						File file = new File(
+								"piege.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 
 			}
@@ -517,15 +969,37 @@ public class Painter implements GamePainter {
 			for (int j = 0; j < p.taille; j++) {
 				if (p.plateau[j][i] == 10) {// murs contour
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 0) {
+					try {
+						File file = new File(
+								"sol.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 1) {// murs
 
-					crayon.setColor(Color.DARK_GRAY);
-					crayon.fillRect(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
-				if (p.plateau[j][i] == 2) {// heros
+				if (p.plateau[j][i] == 2) {// hero
 					try {
 						File file = new File(
 								"heros.png");
@@ -537,21 +1011,79 @@ public class Painter implements GamePainter {
 				}
 				if (p.plateau[j][i] == 5) {// tresor
 
-					crayon.setColor(Color.YELLOW);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"tresor1.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
 				}
 				if (p.plateau[j][i] == 6) {// passage
 
-					crayon.setColor(Color.BLUE);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
+					try {
+						File file = new File(
+								"passage.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
+				}
+				if (p.plateau[j][i] == 7) {// monstre
+					try {
+						File file = new File(
+								"monstre.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 8) {// monstre
+					try {
+						File file = new File(
+								"Ghost.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 9) {// monstre
+					try {
+						File file = new File(
+								"Ghost_mur.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				if (p.plateau[j][i] == 4) {// monstre
+					try {
+						File file = new File(
+								"magie.png");
+						
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					}catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				if (p.plateau[j][i] == 3) {// piege
 
-					crayon.setColor(Color.RED);
-					crayon.fillOval(i * 40, j * 40, 40, 40);
-
+					try {
+						File file = new File(
+								"piege.png");
+						BufferedImage bufferedImage = ImageIO.read(file);
+						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 
 			}

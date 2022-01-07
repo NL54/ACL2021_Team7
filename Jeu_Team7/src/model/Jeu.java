@@ -35,12 +35,15 @@ public class Jeu extends Labyrinthe implements Game  {
 	public Plateau4 p4;
 	public Plateau5 p5;
 	Heros h;
+	ghost g = new ghost(1, 8, 9);
 	Monstre M = new Monstre(1,16,17);
 	Monstre M2 = new Monstre(1,4,10);
 	int niveau;
 	public boolean fin;
 	int niveaumax;
 	int hpmax;
+	boolean acceuil;
+	boolean gagner;
 	public Jeu(String source,int diff) {
 		super(diff);
 		niveaumax=super.Niveaumax();
@@ -55,8 +58,15 @@ public class Jeu extends Labyrinthe implements Game  {
 		p1f=new Plateau1avecfin();
 		p3f=new Plateau3avecfin();
 		h=new Heros(3);
-	
-		niveau=1;
+		acceuil=false;
+		gagner=false;
+		if (diff==0) {
+			niveau=0;
+		}
+		else {
+			niveau=1;
+		}
+		
 		BufferedReader helpReader;
 		try {
 			helpReader = new BufferedReader(new FileReader(source));
@@ -78,6 +88,17 @@ public class Jeu extends Labyrinthe implements Game  {
 	@Override
 	public void evolve(Cmd commande) {
 		System.out.println("Execute "+commande);
+		System.out.println("Execute "+commande);
+		if (acceuil==true) {
+			fin=true;
+		}
+		if (niveau==0) {
+			acceuil=true;
+			
+		}
+		if (mort()) {
+			fin=true;
+		}
 		if (commande==Cmd.ATT) {
 			attaquer(niveau);
 		}
@@ -118,6 +139,7 @@ public class Jeu extends Labyrinthe implements Game  {
 				deplacer(commande,niveau);
 				deplace_monstre(M);
 				deplace_monstre(M2);
+				deplace_ghost(g);
 				System.out.print(M.getX()+'/'+M.getY());
 				}
 			else if (Tresor(niveau,commande)) {
@@ -128,6 +150,7 @@ public class Jeu extends Labyrinthe implements Game  {
 				deplacer(commande,niveau);
 				deplace_monstre(M);
 				deplace_monstre(M2);
+				deplace_ghost(g);
 				System.out.print(M.getX()+'/'+M.getY());
 		
 			
@@ -147,6 +170,7 @@ public class Jeu extends Labyrinthe implements Game  {
 				deplacer(commande,niveau);
 				deplace_monstre(M);
 				deplace_monstre(M2);
+				deplace_ghost(g);
 				System.out.print(M.getX()+'/'+M.getY());
 				}
 			else if (Tresor(niveau,commande)) {
@@ -157,6 +181,7 @@ public class Jeu extends Labyrinthe implements Game  {
 				deplacer(commande,niveau);
 				deplace_monstre(M);
 				deplace_monstre(M2);
+				deplace_ghost(g);
 				System.out.print(M.getX()+'/'+M.getY());
 			
 			
@@ -176,6 +201,7 @@ public class Jeu extends Labyrinthe implements Game  {
 				deplacer(commande,niveau);
 				deplace_monstre(M);
 				deplace_monstre(M2);
+				deplace_ghost(g);
 				System.out.print(M.getX()+'/'+M.getY());
 				}
 			else if (Tresor(niveau,commande)) {
@@ -186,6 +212,7 @@ public class Jeu extends Labyrinthe implements Game  {
 			deplacer(commande,niveau);
 			deplace_monstre(M);
 			deplace_monstre(M2);
+			deplace_ghost(g);
 			System.out.print(M.getX()+'/'+M.getY());
 			
 			
@@ -205,6 +232,7 @@ public class Jeu extends Labyrinthe implements Game  {
 				deplacer(commande,niveau);
 				deplace_monstre(M);
 				deplace_monstre(M2);
+				deplace_ghost(g);
 				System.out.print(M.getX()+'/'+M.getY());
 				}
 			else if (Tresor(niveau,commande)) {
@@ -214,6 +242,7 @@ public class Jeu extends Labyrinthe implements Game  {
 			deplacer(commande,niveau);
 			deplace_monstre(M);
 			deplace_monstre(M2);
+			deplace_ghost(g);
 			System.out.print(M.getX()+'/'+M.getY());
 			
 			
@@ -430,6 +459,12 @@ public class Jeu extends Labyrinthe implements Game  {
 			posfutur[1]= getPosHeros(niveau)[1]+1;
 		}
 		if (getPos(posfutur,niveau)==5) {
+			return true;
+		}
+		return false;
+	}
+	public boolean mort() {
+		if (h.Hp==0) {
 			return true;
 		}
 		return false;
@@ -871,7 +906,7 @@ public class Jeu extends Labyrinthe implements Game  {
 	public void deplace_monstre(Monstre m) {
 		int A = m.genererInt2(-1, 1);
 		int B = m.genererInt2(-1, 1);
-		if (p1.plateau[m.getX()-1][m.getY()] != 10 && p1.plateau[m.getX()-1][m.getY()] != 1) {
+		if (p1.plateau[m.getX()-1][m.getY()] != 10 && p1.plateau[m.getX()-1][m.getY()] != 17 && p1.plateau[m.getX()-1][m.getY()] != 8 && p1.plateau[m.getX()-1][m.getY()] != 9 && p1.plateau[m.getX()-1][m.getY()] != 1 && p1.plateau[m.getX()-1][m.getY()] != 3 && p1.plateau[m.getX()-1][m.getY()] != 4 && p1.plateau[m.getX()-1][m.getY()] != 5 && p1.plateau[m.getX()-1][m.getY()] != 6) {
 			
 		
 			if(A == -1) { 
@@ -880,7 +915,7 @@ public class Jeu extends Labyrinthe implements Game  {
 				p1.plateau[m.getX()][m.getY()] = 7;
 		}
 		}
-		if (p1.plateau[m.getX()+1][m.getY()] != 10 && p1.plateau[m.getX()+1][m.getY()] != 1) {
+		if (p1.plateau[m.getX()+1][m.getY()] != 10 && p1.plateau[m.getX()+1][m.getY()] != 1  && p1.plateau[m.getX()+1][m.getY()] != 7  && p1.plateau[m.getX()+1][m.getY()] != 8  && p1.plateau[m.getX()+1][m.getY()] != 9 && p1.plateau[m.getX()+1][m.getY()] != 3 && p1.plateau[m.getX()+1][m.getY()] != 4 && p1.plateau[m.getX()+1][m.getY()] != 5 && p1.plateau[m.getX()+1][m.getY()] != 6) {
 		
 		if(A == 1) { 
 			p1.plateau[m.getX()][m.getY()] = 0;
@@ -888,14 +923,14 @@ public class Jeu extends Labyrinthe implements Game  {
 			p1.plateau[m.getX()][m.getY()] =  7;
 		}
 		}
-		if (p1.plateau[m.getX()][m.getY()-1] != 10 && p1.plateau[m.getX()][m.getY()-1] != 1) {
+		if (p1.plateau[m.getX()][m.getY()-1] != 10 && p1.plateau[m.getX()][m.getY()-1] != 1 && p1.plateau[m.getX()][m.getY()-1] != 7 && p1.plateau[m.getX()][m.getY()-1] != 8 && p1.plateau[m.getX()][m.getY()-1] != 9 && p1.plateau[m.getX()][m.getY()-1] != 3 && p1.plateau[m.getX()][m.getY()-1] != 4 && p1.plateau[m.getX()][m.getY()-1] != 5 && p1.plateau[m.getX()][m.getY()-1] != 6) {
 		if(B == -1) { 
 			p1.plateau[m.getX()][m.getY()] = 0;
 			m.position_y = m.position_y - 1;
 			p1.plateau[m.getX()][m.getY()] =  7;
 		}
 		}
-		if (p1.plateau[m.getX()][m.getY()+1] != 10 && p1.plateau[m.getX()][m.getY()+1] != 1) {
+		if (p1.plateau[m.getX()][m.getY()+1] != 10 && p1.plateau[m.getX()][m.getY()+1] != 1 && p1.plateau[m.getX()][m.getY()+1] != 7 && p1.plateau[m.getX()][m.getY()+1] != 8 && p1.plateau[m.getX()][m.getY()+1] != 9 && p1.plateau[m.getX()][m.getY()+1] != 3 && p1.plateau[m.getX()][m.getY()+1] != 4 && p1.plateau[m.getX()][m.getY()+1] != 5 && p1.plateau[m.getX()][m.getY()+1] != 6) {
 		if(B == 1) { 
 			p1.plateau[m.getX()][m.getY()] = 0;
 			m.position_y = m.position_y +1;
@@ -904,6 +939,134 @@ public class Jeu extends Labyrinthe implements Game  {
 		}
 
 	}
+
+	public void deplace_ghost(ghost g) {
+		int A = g.genererInt2(-1, 1);
+		int B = g.genererInt2(-1, 1);
+		if (p1.plateau[g.getX()][g.getY()] == 8 &&  p1.plateau[g.getX()-1][g.getY()] == 0) {
+		if(A == -1 ) { 
+			p1.plateau[g.getX()][g.getY()] = 0;
+			g.position_x = g.position_x - 1;
+			p1.plateau[g.getX()][g.getY()] = 8;
+		}
+		}
+		if (p1.plateau[g.getX()+1][g.getY()] == 0 && p1.plateau[g.getX()][g.getY()] == 8 ) {
+		
+		if(A == 1) { 
+			p1.plateau[g.getX()][g.getY()] = 0;
+			g.position_x = g.position_x +1;
+			p1.plateau[g.getX()][g.getY()] =  8;
+		}
+		}
+		if (p1.plateau[g.getX()][g.getY()-1] == 0 && p1.plateau[g.getX()][g.getY()] == 8 ) {
+		if(B == -1) { 
+			p1.plateau[g.getX()][g.getY()] = 0;
+			g.position_y = g.position_y - 1;
+			p1.plateau[g.getX()][g.getY()] =  8;
+		}
+		}
+		if (p1.plateau[g.getX()][g.getY()+1] == 0 && p1.plateau[g.getX()][g.getY()] == 8 ) {
+		if(B == 1) { 
+			p1.plateau[g.getX()][g.getY()] = 0;
+			g.position_y = g.position_y +1;
+			p1.plateau[g.getX()][g.getY()] =  8;
+		}
+		}
+
+		if (p1.plateau[g.getX()-1][g.getY()] == 1 && p1.plateau[g.getX()][g.getY()] == 9 ) {
+		if(A == -1 ) { 
+			p1.plateau[g.getX()][g.getY()] = 1;
+			g.position_x = g.position_x - 1;
+			p1.plateau[g.getX()][g.getY()] = 9;
+		}
+		}
+		if (p1.plateau[g.getX()][g.getY()] == 9 && p1.plateau[g.getX()+1][g.getY()] == 1  ) {
+		
+		if(A == 1) { 
+			p1.plateau[g.getX()][g.getY()] = 1;
+			g.position_x = g.position_x +1;
+			p1.plateau[g.getX()][g.getY()] =  9;
+		}
+		}
+		if (p1.plateau[g.getX()][g.getY()] == 9 && p1.plateau[g.getX()][g.getY()-1] == 1 ) {
+		if(B == -1) { 
+			p1.plateau[g.getX()][g.getY()] = 1;
+			g.position_y = g.position_y - 1;
+			p1.plateau[g.getX()][g.getY()] =  9;
+		}
+		}
+		if (p1.plateau[g.getX()][g.getY()+1] == 1 && p1.plateau[g.getX()][g.getY()] == 9 ) {
+		if(B == 1) { 
+			p1.plateau[g.getX()][g.getY()] = 1;
+			g.position_y = g.position_y +1;
+			p1.plateau[g.getX()][g.getY()] =  9;
+		}
+		}
+	
+		if (p1.plateau[g.getX()-1][g.getY()] == 0 && p1.plateau[g.getX()][g.getY()] == 9) {
+		if (A == -1){
+			p1.plateau[g.getX()][g.getY()] = 1;
+			g.position_x = g.position_x - 1;
+			p1.plateau[g.getX()][g.getY()] =  8;
+		}
+		}
+		if (p1.plateau[g.getX()+1][g.getY()] == 0 && p1.plateau[g.getX()][g.getY()] == 9) {
+		if (A == 1){
+			p1.plateau[g.getX()][g.getY()] = 1;
+			g.position_x = g.position_x + 1;
+			p1.plateau[g.getX()][g.getY()] =  8;
+		}
+		}
+		if (p1.plateau[g.getX()][g.getY()-1] == 0 && p1.plateau[g.getX()][g.getY()] == 9) {
+		if (B == -1){
+			p1.plateau[g.getX()][g.getY()] = 1;
+			g.position_y = g.position_y - 1;
+			p1.plateau[g.getX()][g.getY()] =  8;
+		}
+		}
+		if (p1.plateau[g.getX()][g.getY()+1] == 0 && p1.plateau[g.getX()][g.getY()] == 9){
+		if (B == 1){
+			p1.plateau[g.getX()][g.getY()] = 1;
+			g.position_y = g.position_y + 1;
+			p1.plateau[g.getX()][g.getY()] =  8;
+		}
+		}
+		
+		if (p1.plateau[g.getX()-1][g.getY()] == 1 && p1.plateau[g.getX()][g.getY()] == 8) {
+		if (A == -1){
+			p1.plateau[g.getX()][g.getY()] = 0;
+			g.position_x = g.position_x - 1;
+			p1.plateau[g.getX()][g.getY()] =  9;
+		}
+		}
+		if (p1.plateau[g.getX()+1][g.getY()] == 1 && p1.plateau[g.getX()][g.getY()] == 8) {
+		if (A == 1){
+			p1.plateau[g.getX()][g.getY()] = 0;
+			g.position_x = g.position_x + 1;
+			p1.plateau[g.getX()][g.getY()] =  9;
+		}
+		}
+		if (p1.plateau[g.getX()][g.getY()-1] == 1 && p1.plateau[g.getX()][g.getY()] == 8) {
+		if (B == -1){
+			p1.plateau[g.getX()][g.getY()] = 0;
+			g.position_y = g.position_y - 1;
+			p1.plateau[g.getX()][g.getY()] =  9;
+		}
+		}
+		if (p1.plateau[g.getX()][g.getY()+1] == 1 && p1.plateau[g.getX()][g.getY()] == 8){
+		if (B == 1){
+			p1.plateau[g.getX()][g.getY()] = 0;
+			g.position_y = g.position_y + 1;
+			p1.plateau[g.getX()][g.getY()] =  9;
+		}
+		}
+
+
+
+
+
+	}
+
 
 
 

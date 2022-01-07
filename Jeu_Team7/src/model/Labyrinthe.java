@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Scanner;
+
 public class Labyrinthe {
 	private int difficulte;
 	public int niveaumax;
@@ -9,6 +11,9 @@ public class Labyrinthe {
 		
 	}
 	public int Niveaumax() {
+		if (this.difficulte==0) {
+			this.niveaumax=1;
+		}
 		if (this.difficulte==1) {
 			this.niveaumax =1;
 		}
@@ -21,6 +26,9 @@ public class Labyrinthe {
 		return this.niveaumax;
 	}
 	public int Hpmax() {
+		if (this.difficulte==0) {
+			this.hpmax =3;
+		}
 		if (this.difficulte==1) {
 			this.hpmax =3;
 		}
