@@ -43,16 +43,12 @@ public class Painter implements GamePainter {
 public void draw(BufferedImage im) {
 		
 		if (jeu.isFinished()==true) {
-			if (jeu.acceuil==true) {
-				DessinerAcceuil(im);
-			}
-			else {
 				if (jeu.gagner==true){
 						DessinerVictoire(im);
 				}
 				else {
 					DessinerDefaite(im);
-				}
+				
 			}
 		}
 		else {
