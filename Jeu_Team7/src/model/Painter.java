@@ -168,16 +168,16 @@ public void draw(BufferedImage im) {
 						e.printStackTrace();
 					}
 				}
-				if (p.plateau[j][i] == 0) {
-					try {
-						File file = new File(
-								"sol.png");
-						BufferedImage bufferedImage = ImageIO.read(file);
-						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
+//				if (p.plateau[j][i] == 0) {
+//					try {
+//						File file = new File(
+//								"sol.png");
+//						BufferedImage bufferedImage = ImageIO.read(file);
+//						crayon.drawImage(bufferedImage, i * 40, j * 40, 40, 40, null);
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}
+//				}
 				if (p.plateau[j][i] == 1) {// murs
 
 					try {
@@ -406,17 +406,18 @@ public void draw(BufferedImage im) {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-//					try {
-//						File file = new File(
-//								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\piege.png");
-//						BufferedImage bufferedImage2 = ImageIO.read(file);
-//						crayon.drawImage(bufferedImage2, i * 40, j * 40, 40, 40, null);
-//					} catch (IOException e) {
-//						e.printStackTrace();
+					try {
+						File file = new File(
+								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\piege.png");
+						BufferedImage bufferedImage2 = ImageIO.read(file);
+						crayon.drawImage(bufferedImage2, i * 40, j * 40, 40, 40, null);
+					} catch (IOException e) {
+						e.printStackTrace();
 					}
 				}
 
-				}
+			}
+		}
 
 			}
 	
