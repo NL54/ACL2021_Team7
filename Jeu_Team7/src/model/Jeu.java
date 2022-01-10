@@ -40,7 +40,7 @@ public class Jeu extends Labyrinthe implements Game  {
 	public boolean fin;
 	int niveaumax;
 	int hpmax;
-	boolean acceuil;
+
 	boolean gagner;
 	public Jeu(String source,int diff) {
 		super(diff);
@@ -56,7 +56,7 @@ public class Jeu extends Labyrinthe implements Game  {
 		p1f=new Plateau1avecfin();
 		p3f=new Plateau3avecfin();
 		h=new Heros(3);
-		acceuil=false;
+	
 		gagner=false;
 		if (diff==0) {
 			niveau=0;
@@ -87,13 +87,6 @@ public class Jeu extends Labyrinthe implements Game  {
 	public void evolve(Cmd commande) {
 		System.out.println("Execute "+commande);
 		System.out.println("Execute "+commande);
-		if (acceuil==true) {
-			fin=true;
-		}
-		if (niveau==0) {
-			acceuil=true;
-			
-		}
 		if (mort()) {
 			fin=true;
 		}
