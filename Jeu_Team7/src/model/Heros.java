@@ -3,7 +3,6 @@ package model;
 
 public class Heros  {
 
-	int[]pos;
 	public int Hp = 3;
 	
 	Heros( int Hp ){
