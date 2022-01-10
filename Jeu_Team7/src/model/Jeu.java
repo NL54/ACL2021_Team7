@@ -20,8 +20,6 @@ import engine.Game;
  * 
  */
 public class Jeu extends Labyrinthe implements Game  {
-	
-
 	/**
 	 * constructeur avec fichier source pour le help
 	 * 
@@ -100,54 +98,69 @@ public class Jeu extends Labyrinthe implements Game  {
 			fin=true;
 		}
 		if (commande==Cmd.ATT) {
-			attaquer(niveau);
+			try {
+				attaquer(niveau);
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		if (commande==Cmd.RIGHT) {
-			if (activePassage(niveau,commande)) {
-				niveau+=1;
-				} 
-			
-			else if (activeMagie(niveau,commande)) {
-				if (niveau==1) {
-				p1.plateau[1][1]=2;
+			try {
+				if (activePassage(niveau,commande)) {
+					niveau+=1;
+					} 
 				
-				p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+				else if (activeMagie(niveau,commande)) {
+					if (niveau==1) {
+					p1.plateau[1][1]=2;
+					
+					p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+					}
+					if (niveau==2) {
+						p2.plateau[1][1]=2;
+						
+						p2.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+						}
+					if (niveau==3) {
+						p3.plateau[1][1]=2;
+						
+						p3.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+						}
+					if (niveau==4) {
+						p4.plateau[1][1]=2;
+						
+						p4.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+						}
+					if (niveau==5) {
+						p5.plateau[1][1]=2;
+						
+						p5.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
+						}
+					} 
+				else if (activePiege(niveau,commande)) {
+					h.perdpointdevie(1);
+					deplacer(commande,niveau);
+					deplace_monstre(M);
+					deplace_monstre(M2);
+					deplace_ghost(g);
+					System.out.print(M.getX()+'/'+M.getY());
+					}
+				else if (Tresor(niveau,commande)) {
+					fin=true;
+					System.out.println("BRAVO TU AS GAGNE");
 				}
-				if (niveau==2) {
-					p2.plateau[1][1]=2;
-					
-					p2.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
-					}
-				if (niveau==3) {
-					p3.plateau[1][1]=2;
-					
-					p3.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
-					}
-				if (niveau==4) {
-					p4.plateau[1][1]=2;
-					
-					p4.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
-					}
-				if (niveau==5) {
-					p5.plateau[1][1]=2;
-					
-					p5.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;
-					}
-				} 
-			else if (activePiege(niveau,commande)) {
-				h.perdpointdevie(1);
-				deplacer(commande,niveau);
-				deplace_monstre(M);
-				deplace_monstre(M2);
-				deplace_ghost(g);
-				System.out.print(M.getX()+'/'+M.getY());
-				}
-			else if (Tresor(niveau,commande)) {
-				fin=true;
-				System.out.println("BRAVO TU AS GAGNE");
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 	
-				deplacer(commande,niveau);
+				try {
+					deplacer(commande,niveau);
+				} catch (ErreurHeros e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				deplace_monstre(M);
 				deplace_monstre(M2);
 				deplace_ghost(g);
@@ -156,29 +169,39 @@ public class Jeu extends Labyrinthe implements Game  {
 			
 				} 
 		if(commande==Cmd.LEFT) {
-			if (activePassage(niveau,commande)) {
-				niveau+=1;
-				} 
-			
-			else if (activeMagie(niveau,commande)) {
-				p1.plateau[1][1]=2;
-				if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
-					{p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;}
-				} 
-			else if (activePiege(niveau,commande)) {
-				h.perdpointdevie(1);
-				deplacer(commande,niveau);
-				deplace_monstre(M);
-				deplace_monstre(M2);
-				deplace_ghost(g);
-				System.out.print(M.getX()+'/'+M.getY());
+			try {
+				if (activePassage(niveau,commande)) {
+					niveau+=1;
+					} 
+				
+				else if (activeMagie(niveau,commande)) {
+					p1.plateau[1][1]=2;
+					if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
+						{p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;}
+					} 
+				else if (activePiege(niveau,commande)) {
+					h.perdpointdevie(1);
+					deplacer(commande,niveau);
+					deplace_monstre(M);
+					deplace_monstre(M2);
+					deplace_ghost(g);
+					System.out.print(M.getX()+'/'+M.getY());
+					}
+				else if (Tresor(niveau,commande)) {
+					fin=true;
+					System.out.println("BRAVO TU AS GAGNE");
 				}
-			else if (Tresor(niveau,commande)) {
-				fin=true;
-				System.out.println("BRAVO TU AS GAGNE");
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
-				deplacer(commande,niveau);
+				try {
+					deplacer(commande,niveau);
+				} catch (ErreurHeros e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				deplace_monstre(M);
 				deplace_monstre(M2);
 				deplace_ghost(g);
@@ -187,29 +210,39 @@ public class Jeu extends Labyrinthe implements Game  {
 			
 				} 
 		if(commande==Cmd.UP) {
-			if (activePassage(niveau,commande)) {
-				niveau+=1;
-				} 
-			
-			else if (activeMagie(niveau,commande)) {
-				p1.plateau[1][1]=2;
-				if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
-					{p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;}
-				} 
-			else if (activePiege(niveau,commande)) {
-				h.perdpointdevie(1);
-				deplacer(commande,niveau);
-				deplace_monstre(M);
-				deplace_monstre(M2);
-				deplace_ghost(g);
-				System.out.print(M.getX()+'/'+M.getY());
+			try {
+				if (activePassage(niveau,commande)) {
+					niveau+=1;
+					} 
+				
+				else if (activeMagie(niveau,commande)) {
+					p1.plateau[1][1]=2;
+					if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
+						{p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;}
+					} 
+				else if (activePiege(niveau,commande)) {
+					h.perdpointdevie(1);
+					deplacer(commande,niveau);
+					deplace_monstre(M);
+					deplace_monstre(M2);
+					deplace_ghost(g);
+					System.out.print(M.getX()+'/'+M.getY());
+					}
+				else if (Tresor(niveau,commande)) {
+					fin=true;
+					System.out.println("BRAVO TU AS GAGNE");
 				}
-			else if (Tresor(niveau,commande)) {
-				fin=true;
-				System.out.println("BRAVO TU AS GAGNE");
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		
-			deplacer(commande,niveau);
+			try {
+				deplacer(commande,niveau);
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			deplace_monstre(M);
 			deplace_monstre(M2);
 			deplace_ghost(g);
@@ -218,28 +251,38 @@ public class Jeu extends Labyrinthe implements Game  {
 			
 				} 
 		if(commande==Cmd.DOWN) {
-			if (activePassage(niveau,commande)) {
-				niveau+=1;
-				} 
-			
-			else if (activeMagie(niveau,commande)) {
-				p1.plateau[1][1]=2;
-				if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
-					{p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;}
-				} 
-			else if (activePiege(niveau,commande)) {
-				h.perdpointdevie(1);
-				deplacer(commande,niveau);
-				deplace_monstre(M);
-				deplace_monstre(M2);
-				deplace_ghost(g);
-				System.out.print(M.getX()+'/'+M.getY());
+			try {
+				if (activePassage(niveau,commande)) {
+					niveau+=1;
+					} 
+				
+				else if (activeMagie(niveau,commande)) {
+					p1.plateau[1][1]=2;
+					if ((getPosHeros(niveau)[0] != 1) && (getPosHeros(niveau)[1]!=1))
+						{p1.plateau[getPosHeros(niveau)[1]][getPosHeros(niveau)[0]]=0;}
+					} 
+				else if (activePiege(niveau,commande)) {
+					h.perdpointdevie(1);
+					deplacer(commande,niveau);
+					deplace_monstre(M);
+					deplace_monstre(M2);
+					deplace_ghost(g);
+					System.out.print(M.getX()+'/'+M.getY());
+					}
+				else if (Tresor(niveau,commande)) {
+					fin=true;
+					System.out.println("BRAVO TU AS GAGNE");
 				}
-			else if (Tresor(niveau,commande)) {
-				fin=true;
-				System.out.println("BRAVO TU AS GAGNE");
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			deplacer(commande,niveau);
+			try {
+				deplacer(commande,niveau);
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			deplace_monstre(M);
 			deplace_monstre(M2);
 			deplace_ghost(g);
@@ -265,30 +308,26 @@ public class Jeu extends Labyrinthe implements Game  {
 		
 		
 	}
-	public  int[] getPosHeros(int niveau) {
-		int pos =0;
-		int x=0;
-		int y=0;
+	public  int[] getPosHeros(int niveau) throws ErreurHeros {
+		int x = -100;
+		int y= -100;
 		for (int i=0; i<p1.taille ;i++) {
 			for (int j=0; j<p1.taille ;j++) {
 				if (niveau==niveaumax) {
 					if (niveau==1) {
-						if (p1f.plateau[j][i]==2) {;
-							pos= p1f.plateau[j][i];
+						if (p1f.plateau[j][i]==2) {
 							x=i;
 							y=j;
 						}
 					}
 					if (niveau==3) {
-						if (p3f.plateau[j][i]==2) {;
-							pos= p3f.plateau[j][i];
+						if (p3f.plateau[j][i]==2) {
 							x=i;
 							y=j;
 						}
 					}
 					if (niveau==5) {
-						if (p5.plateau[j][i]==2) {;
-							pos= p5.plateau[j][i];
+						if (p5.plateau[j][i]==2) {
 							x=i;
 							y=j;
 						}
@@ -296,42 +335,40 @@ public class Jeu extends Labyrinthe implements Game  {
 				}
 				else {
 					if (niveau==1) {
-						if (p1.plateau[j][i]==2) {;
-							pos= p1.plateau[j][i];
+						if (p1.plateau[j][i]==2) {
 							x=i;
 							y=j;
 						}
 					}
 					if (niveau==2) {
-						if (p2.plateau[j][i]==2) {;
-							pos= p2.plateau[j][i];
+						if (p2.plateau[j][i]==2) {
 							x=i;
 							y=j;
 						}
 					}
 					if (niveau==3) {
-						if (p3.plateau[j][i]==2) {;
-							pos= p3.plateau[j][i];
+						if (p3.plateau[j][i]==2) {
 							x=i;
 							y=j;
 						}
 					}
 					if (niveau==4) {
-						if (p4.plateau[j][i]==2) {;
-							pos= p4.plateau[j][i];
+						if (p4.plateau[j][i]==2) {
 							x=i;
 							y=j;
 						}
 					}
 					if (niveau==5) {
-						if (p5.plateau[j][i]==2) {;
-							pos= p5.plateau[j][i];
+						if (p5.plateau[j][i]==2) {
 							x=i;
 							y=j;
 						}
 					}
 				}
 			}
+	}
+	if (x==-100 && y==-100) {
+		throw new ErreurHeros();
 	}
 		int position []= {x,y};
 		return position ;
@@ -370,7 +407,7 @@ public class Jeu extends Labyrinthe implements Game  {
 		}
 		return pos;
 	}
-	public boolean activePassage(int niveau,Cmd commande) {
+	public boolean activePassage(int niveau,Cmd commande) throws ErreurHeros {
 		int [] posfutur = new int[2];
 		if (commande == Cmd.RIGHT) {
 			posfutur[0]= getPosHeros(niveau)[0]+1;
@@ -394,7 +431,7 @@ public class Jeu extends Labyrinthe implements Game  {
 		return false;
 	}
 	
-	public boolean activeMagie(int niveau,Cmd commande) {
+	public boolean activeMagie(int niveau,Cmd commande) throws ErreurHeros {
 		int [] posfutur = new int[2];
 		if (commande == Cmd.RIGHT) {
 			posfutur[0]= getPosHeros(niveau)[0]+1;
@@ -417,7 +454,7 @@ public class Jeu extends Labyrinthe implements Game  {
 		}
 		return false;
 	}
-	public boolean activePiege(int niveau,Cmd commande) {
+	public boolean activePiege(int niveau,Cmd commande) throws ErreurHeros {
 		int [] posfutur = new int[2];
 		if (commande == Cmd.RIGHT) {
 			posfutur[0]= getPosHeros(niveau)[0]+1;
@@ -440,7 +477,7 @@ public class Jeu extends Labyrinthe implements Game  {
 		}
 		return false;
 	}
-	public boolean Tresor(int niveau,Cmd commande) {
+	public boolean Tresor(int niveau,Cmd commande) throws ErreurHeros {
 		int [] posfutur = new int[2];
 		if (commande == Cmd.RIGHT) {
 			posfutur[0]= getPosHeros(niveau)[0]+1;
@@ -471,9 +508,15 @@ public class Jeu extends Labyrinthe implements Game  {
 	}
 	//methode pour deplacer le hero
 	int[]pos;
-	public void deplacer(Cmd commande, int niveau){
+	public void deplacer(Cmd commande, int niveau) throws ErreurHeros{
 		if (commande==Cmd.LEFT) {
 			pos=getPosHeros(niveau);
+			if (pos[0]-1>=p1f.plateau.length) {
+				throw new ErreurHeros();
+			}
+			if (pos[0]-1<0) {
+				throw new ErreurHeros();
+			}
 			if (niveau==niveaumax) {
 				if(niveau==1) {
 					
@@ -559,6 +602,12 @@ public class Jeu extends Labyrinthe implements Game  {
 		
 		if (commande==Cmd.RIGHT) {
 			pos=getPosHeros(niveau);
+			if (pos[0]+1>=p1f.plateau.length) {
+				throw new ErreurHeros();
+			}
+			if (pos[0]+1<0) {
+				throw new ErreurHeros();
+			}
 			if (niveau==niveaumax) {
 				if(niveau==1) {
 					if(p1f.plateau[pos[1]][pos[0]+1]!=1){
@@ -644,6 +693,12 @@ public class Jeu extends Labyrinthe implements Game  {
 		}
 			if (commande==Cmd.UP) {
 				pos=getPosHeros(niveau);
+				if (pos[1]-1>=p1f.plateau.length) {
+					throw new ErreurHeros();
+				}
+				if (pos[1]-1<0) {
+					throw new ErreurHeros();
+				}
 				if (niveau==niveaumax) {
 					if(niveau==1) {
 						if(p1f.plateau[pos[1]-1][pos[0]]!=1){
@@ -725,6 +780,12 @@ public class Jeu extends Labyrinthe implements Game  {
 		}
 		if (commande==Cmd.DOWN) {
 			pos=getPosHeros(niveau);
+			if (pos[1]+1>=p1f.plateau.length) {
+				throw new ErreurHeros();
+			}
+			if (pos[1]+1<0) {
+				throw new ErreurHeros();
+			}
 			if (niveau==niveaumax) {
 				if(niveau==1) {
 					if(p1f.plateau[pos[1]+1][pos[0]]!=1){
@@ -805,7 +866,7 @@ public class Jeu extends Labyrinthe implements Game  {
 		}
 		
 	}
-	public void attaquer( int niveau) {
+	public void attaquer( int niveau) throws ErreurHeros {
 		pos=getPosHeros(niveau);
 		if (niveau==niveaumax) {
 			if(niveau ==1) {

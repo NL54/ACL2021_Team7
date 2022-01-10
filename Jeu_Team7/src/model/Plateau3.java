@@ -1,6 +1,6 @@
 package model;
 public class Plateau3 {
-		int taille;
+		public int taille;
 
 	int [][] plateau;
 	public Plateau3() {

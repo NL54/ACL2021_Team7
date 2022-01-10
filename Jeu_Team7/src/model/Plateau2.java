@@ -1,7 +1,7 @@
 package model;
 
 public class Plateau2  {
-	int taille;
+	public int taille;
 	int [][] plateau;
 	public Plateau2() {
 		//1= mur 2= heros 3=piege 4=magie 6=passage 6=tresor
