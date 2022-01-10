@@ -1,6 +1,9 @@
-# ACL2021_Team7
-Répartition des taches
-LIM Nicolas : méthode classe plateau
-MAGHRAOUI Salma: attribut classe plateau
-CONRAD-BRUAT Lucas :classe attaque/héros
-MENSURI Resa : Classe monstre/héros
+Mode d'emploi: 
+Le but du jeu est de trouver le trésor.
+Choisissez la difficulté en cliquant sur le bouton correspondant à la difficulté voulue.
+Pour bouger :
+Z : aller vers le haut
+S : aller vers le bas
+Q : aller vers la gauche
+D : aller vers la droite
+A : attaquer autour de so
