@@ -408,7 +408,7 @@ public void draw(BufferedImage im) {
 					}
 					try {
 						File file = new File(
-								"C:\\Users\\ZBook\\git\\ACL2021_Team7\\piege.png");
+								"piege.png");
 						BufferedImage bufferedImage2 = ImageIO.read(file);
 						crayon.drawImage(bufferedImage2, i * 40, j * 40, 40, 40, null);
 					} catch (IOException e) {
