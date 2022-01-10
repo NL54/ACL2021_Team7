@@ -6,4 +6,4 @@ Z : aller vers le haut
 S : aller vers le bas
 Q : aller vers la gauche
 D : aller vers la droite
-A : attaquer autour de so
+A : attaquer autour de soi
