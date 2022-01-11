@@ -7,3 +7,8 @@ S : aller vers le bas
 Q : aller vers la gauche
 D : aller vers la droite
 A : attaquer autour de soi
+
+Guide d'installation :
+Telecharger le procjet
+Ouvrir dans Eclipse le projet Jeu_Team7
+Lancer le main
