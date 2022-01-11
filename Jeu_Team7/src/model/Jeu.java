@@ -32,7 +32,7 @@ public class Jeu extends Labyrinthe implements Game  {
 	public Plateau3avecfin p3f;
 	public Plateau4 p4;
 	public Plateau5 p5;
-	Heros h;
+	public Heros h;
 	ghost g = new ghost(1, 8, 9);
 	Monstre M = new Monstre(1,16,17);
 	Monstre M2 = new Monstre(1,4,10);
@@ -82,6 +82,7 @@ public class Jeu extends Labyrinthe implements Game  {
 	 * faire evoluer le jeu suite a une commande
 	 * 
 	 * @param commande
+	 * @throws ErreurHeros 
 	 */
 	@Override
 	public void evolve(Cmd commande) {
@@ -133,11 +134,8 @@ public class Jeu extends Labyrinthe implements Game  {
 					} 
 				else if (activePiege(niveau,commande)) {
 					h.perdpointdevie(1);
-					deplacer(commande,niveau);
-					deplace_monstre(M,h);
-					deplace_monstre(M2,h);
-					deplace_ghost(g,h);
-					System.out.print(M.getX()+'/'+M.getY());
+		
+				
 					}
 				else if (Tresor(niveau,commande)) {
 					gagner=true;
@@ -155,9 +153,24 @@ public class Jeu extends Labyrinthe implements Game  {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				deplace_monstre(M,h);
-				deplace_monstre(M2,h);
-				deplace_ghost(g,h);
+				try {
+					deplace_monstre(M,h);
+				} catch (ErreurHeros e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				try {
+					deplace_monstre(M2,h);
+				} catch (ErreurHeros e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					deplace_ghost(g,h);
+				} catch (ErreurHeros e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				System.out.print(M.getX()+'/'+M.getY());
 		
 			
@@ -175,11 +188,7 @@ public class Jeu extends Labyrinthe implements Game  {
 					} 
 				else if (activePiege(niveau,commande)) {
 					h.perdpointdevie(1);
-					deplacer(commande,niveau);
-					deplace_monstre(M,h);
-					deplace_monstre(M2,h);
-					deplace_ghost(g,h);
-					System.out.print(M.getX()+'/'+M.getY());
+					
 					}
 				else if (Tresor(niveau,commande)) {
 					gagner=true;
@@ -197,9 +206,24 @@ public class Jeu extends Labyrinthe implements Game  {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				deplace_monstre(M,h);
-				deplace_monstre(M2,h);
-				deplace_ghost(g,h);
+				try {
+					deplace_monstre(M,h);
+				} catch (ErreurHeros e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				try {
+					deplace_monstre(M2,h);
+				} catch (ErreurHeros e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					deplace_ghost(g,h);
+				} catch (ErreurHeros e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				System.out.print(M.getX()+'/'+M.getY());
 			
 			
@@ -217,11 +241,7 @@ public class Jeu extends Labyrinthe implements Game  {
 					} 
 				else if (activePiege(niveau,commande)) {
 					h.perdpointdevie(1);
-					deplacer(commande,niveau);
-					deplace_monstre(M,h);
-					deplace_monstre(M2,h);
-					deplace_ghost(g,h);
-					System.out.print(M.getX()+'/'+M.getY());
+				
 					}
 				else if (Tresor(niveau,commande)) {
 					gagner=true;
@@ -239,9 +259,24 @@ public class Jeu extends Labyrinthe implements Game  {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			deplace_monstre(M,h);
-			deplace_monstre(M2,h);
-			deplace_ghost(g,h);
+			try {
+				deplace_monstre(M,h);
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				deplace_monstre(M2,h);
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				deplace_ghost(g,h);
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.print(M.getX()+'/'+M.getY());
 			
 			
@@ -259,11 +294,7 @@ public class Jeu extends Labyrinthe implements Game  {
 					} 
 				else if (activePiege(niveau,commande)) {
 					h.perdpointdevie(1);
-					deplacer(commande,niveau);
-					deplace_monstre(M,h);
-					deplace_monstre(M2,h);
-					deplace_ghost(g,h);
-					System.out.print(M.getX()+'/'+M.getY());
+				
 					}
 				else if (Tresor(niveau,commande)) {
 					gagner=true;
@@ -280,9 +311,24 @@ public class Jeu extends Labyrinthe implements Game  {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			deplace_monstre(M,h);
-			deplace_monstre(M2,h);
-			deplace_ghost(g,h);
+			try {
+				deplace_monstre(M,h);
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				deplace_monstre(M2,h);
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				deplace_ghost(g,h);
+			} catch (ErreurHeros e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.print(M.getX()+'/'+M.getY());
 			
 			
@@ -961,214 +1007,1043 @@ public class Jeu extends Labyrinthe implements Game  {
 		}
 		
 	}
-	public void deplace_monstre(Monstre m, Heros h) {
+	public void deplace_monstre(Monstre m, Heros h) throws ErreurHeros {
+		int X = g.getX();
+		int Y =g.getY();
+		if(X<0 || X>18) {
+			throw new ErreurHeros();
+		}
+		if(Y<0 || Y>18) {
+			throw new ErreurHeros();
+		}
 		int A = m.genererInt2(-1, 1);
 		int B = m.genererInt2(-1, 1);
-		if (p1.plateau[m.getX()-1][m.getY()] != 10 && p1.plateau[m.getX()-1][m.getY()] != 2 && p1.plateau[m.getX()-1][m.getY()] != 7 && p1.plateau[m.getX()-1][m.getY()] != 8 && p1.plateau[m.getX()-1][m.getY()] != 9 && p1.plateau[m.getX()-1][m.getY()] != 1 && p1.plateau[m.getX()-1][m.getY()] != 3 && p1.plateau[m.getX()-1][m.getY()] != 4 && p1.plateau[m.getX()-1][m.getY()] != 5 && p1.plateau[m.getX()-1][m.getY()] != 6) {
+		if (niveau==1) {
+			if (p1.plateau[m.getX()-1][m.getY()] == 0) {
+				
+				
+				if(A == -1) { 
+					p1.plateau[m.getX()][m.getY()] = 0;
+					m.position_x = m.position_x - 1;
+					p1.plateau[m.getX()][m.getY()] = 7;
+			}
+			}
+			if (p1.plateau[m.getX()+1][m.getY()] == 0 ) {
 			
-		
-			if(A == -1) { 
+			if(A == 1) { 
 				p1.plateau[m.getX()][m.getY()] = 0;
-				m.position_x = m.position_x - 1;
-				p1.plateau[m.getX()][m.getY()] = 7;
+				m.position_x = m.position_x +1;
+				p1.plateau[m.getX()][m.getY()] =  7;
+			}
+			}
+			if (p1.plateau[m.getX()][m.getY()-1] == 0 ) {
+			if(B == -1) { 
+				p1.plateau[m.getX()][m.getY()] = 0;
+				m.position_y = m.position_y - 1;
+				p1.plateau[m.getX()][m.getY()] =  7;
+			}
+			}
+			if (p1.plateau[m.getX()][m.getY()+1] == 0 ) {
+			if(B == 1) { 
+				p1.plateau[m.getX()][m.getY()] = 0;
+				m.position_y = m.position_y +1;
+				p1.plateau[m.getX()][m.getY()] =  7;
+			}
+			}
+			if (p1.plateau[m.getX()-1][m.getY()] == 2) {
+				if (A == -1) {
+					h.Hp = h.Hp -1;
+					
+				}
+			}
+			if (p1.plateau[m.getX()+1][m.getY()] == 2) {
+				if (A == 1) {
+					h.Hp = h.Hp -1;
+					
+				}
+			}
+			if (p1.plateau[m.getX()][m.getY()-1] == 2) {
+				if (B == -1) {
+					h.Hp = h.Hp -1;
+					
+				}
+			}
+			if (p1.plateau[m.getX()][m.getY()+1] == 2) {
+				if (B == 1) {
+					h.Hp = h.Hp -1;
+					
+				}
+			}
 		}
+			if (niveau==2) {
+				if (p2.plateau[m.getX()-1][m.getY()] == 0) {
+					
+					
+					if(A == -1) { 
+						p2.plateau[m.getX()][m.getY()] = 0;
+						m.position_x = m.position_x - 1;
+						p2.plateau[m.getX()][m.getY()] = 7;
+				}
+				}
+				if (p2.plateau[m.getX()+1][m.getY()] == 0 ) {
+				
+				if(A == 1) { 
+					p2.plateau[m.getX()][m.getY()] = 0;
+					m.position_x = m.position_x +1;
+					p2.plateau[m.getX()][m.getY()] =  7;
+				}
+				}
+				if (p2.plateau[m.getX()][m.getY()-1] == 0 ) {
+				if(B == -1) { 
+					p2.plateau[m.getX()][m.getY()] = 0;
+					m.position_y = m.position_y - 1;
+					p2.plateau[m.getX()][m.getY()] =  7;
+				}
+				}
+				if (p2.plateau[m.getX()][m.getY()+1] == 0 ) {
+				if(B == 1) { 
+					p2.plateau[m.getX()][m.getY()] = 0;
+					m.position_y = m.position_y +1;
+					p2.plateau[m.getX()][m.getY()] =  7;
+				}
+				}
+				if (p2.plateau[m.getX()-1][m.getY()] == 2) {
+					if (A == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p2.plateau[m.getX()+1][m.getY()] == 2) {
+					if (A == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p2.plateau[m.getX()][m.getY()-1] == 2) {
+					if (B == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p2.plateau[m.getX()][m.getY()+1] == 2) {
+					if (B == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+			}
+				if (niveau==3) {
+					if (p3.plateau[m.getX()-1][m.getY()] == 0) {
+						
+						
+						if(A == -1) { 
+							p3.plateau[m.getX()][m.getY()] = 0;
+							m.position_x = m.position_x - 1;
+							p3.plateau[m.getX()][m.getY()] = 7;
+					}
+					}
+					if (p3.plateau[m.getX()+1][m.getY()] == 0 ) {
+					
+					if(A == 1) { 
+						p3.plateau[m.getX()][m.getY()] = 0;
+						m.position_x = m.position_x +1;
+						p3.plateau[m.getX()][m.getY()] =  7;
+					}
+					}
+					if (p3.plateau[m.getX()][m.getY()-1] == 0 ) {
+					if(B == -1) { 
+						p3.plateau[m.getX()][m.getY()] = 0;
+						m.position_y = m.position_y - 1;
+						p3.plateau[m.getX()][m.getY()] =  7;
+					}
+					}
+					if (p3.plateau[m.getX()][m.getY()+1] == 0 ) {
+					if(B == 1) { 
+						p3.plateau[m.getX()][m.getY()] = 0;
+						m.position_y = m.position_y +1;
+						p3.plateau[m.getX()][m.getY()] =  7;
+					}
+					}
+					if (p3.plateau[m.getX()-1][m.getY()] == 2) {
+						if (A == -1) {
+							h.Hp = h.Hp -1;
+							
+						}
+					}
+					if (p3.plateau[m.getX()+1][m.getY()] == 2) {
+						if (A == 1) {
+							h.Hp = h.Hp -1;
+							
+						}
+					}
+					if (p3.plateau[m.getX()][m.getY()-1] == 2) {
+						if (B == -1) {
+							h.Hp = h.Hp -1;
+							
+						}
+					}
+					if (p3.plateau[m.getX()][m.getY()+1] == 2) {
+						if (B == 1) {
+							h.Hp = h.Hp -1;
+							
+						}
+					}
+				}
+					if (niveau==4) {
+						if (p4.plateau[m.getX()-1][m.getY()] == 0) {
+							
+							
+							if(A == -1) { 
+								p4.plateau[m.getX()][m.getY()] = 0;
+								m.position_x = m.position_x - 1;
+								p4.plateau[m.getX()][m.getY()] = 7;
+						}
+						}
+						if (p4.plateau[m.getX()+1][m.getY()] == 0 ) {
+						
+						if(A == 1) { 
+							p4.plateau[m.getX()][m.getY()] = 0;
+							m.position_x = m.position_x +1;
+							p4.plateau[m.getX()][m.getY()] =  7;
+						}
+						}
+						if (p4.plateau[m.getX()][m.getY()-1] == 0 ) {
+						if(B == -1) { 
+							p4.plateau[m.getX()][m.getY()] = 0;
+							m.position_y = m.position_y - 1;
+							p4.plateau[m.getX()][m.getY()] =  7;
+						}
+						}
+						if (p4.plateau[m.getX()][m.getY()+1] == 0 ) {
+						if(B == 1) { 
+							p4.plateau[m.getX()][m.getY()] = 0;
+							m.position_y = m.position_y +1;
+							p4.plateau[m.getX()][m.getY()] =  7;
+						}
+						}
+						if (p4.plateau[m.getX()-1][m.getY()] == 2) {
+							if (A == -1) {
+								h.Hp = h.Hp -1;
+								
+							}
+						}
+						if (p4.plateau[m.getX()+1][m.getY()] == 2) {
+							if (A == 1) {
+								h.Hp = h.Hp -1;
+								
+							}
+						}
+						if (p4.plateau[m.getX()][m.getY()-1] == 2) {
+							if (B == -1) {
+								h.Hp = h.Hp -1;
+								
+							}
+						}
+						if (p4.plateau[m.getX()][m.getY()+1] == 2) {
+							if (B == 1) {
+								h.Hp = h.Hp -1;
+								
+							}
+						}
+					}
+						if (niveau==5) {
+							if (p5.plateau[m.getX()-1][m.getY()] == 0) {
+								
+								
+								if(A == -1) { 
+									p5.plateau[m.getX()][m.getY()] = 0;
+									m.position_x = m.position_x - 1;
+									p5.plateau[m.getX()][m.getY()] = 7;
+							}
+							}
+							if (p5.plateau[m.getX()+1][m.getY()] == 0 ) {
+							
+							if(A == 1) { 
+								p5.plateau[m.getX()][m.getY()] = 0;
+								m.position_x = m.position_x +1;
+								p5.plateau[m.getX()][m.getY()] =  7;
+							}
+							}
+							if (p5.plateau[m.getX()][m.getY()-1] == 0 ) {
+							if(B == -1) { 
+								p5.plateau[m.getX()][m.getY()] = 0;
+								m.position_y = m.position_y - 1;
+								p5.plateau[m.getX()][m.getY()] =  7;
+							}
+							}
+							if (p5.plateau[m.getX()][m.getY()+1] == 0 ) {
+							if(B == 1) { 
+								p5.plateau[m.getX()][m.getY()] = 0;
+								m.position_y = m.position_y +1;
+								p5.plateau[m.getX()][m.getY()] =  7;
+							}
+							}
+							if (p5.plateau[m.getX()-1][m.getY()] == 2) {
+								if (A == -1) {
+									h.Hp = h.Hp -1;
+									
+								}
+							}
+							if (p5.plateau[m.getX()+1][m.getY()] == 2) {
+								if (A == 1) {
+									h.Hp = h.Hp -1;
+									
+								}
+							}
+							if (p5.plateau[m.getX()][m.getY()-1] == 2) {
+								if (B == -1) {
+									h.Hp = h.Hp -1;
+									
+								}
+							}
+							if (p5.plateau[m.getX()][m.getY()+1] == 2) {
+								if (B == 1) {
+									h.Hp = h.Hp -1;
+									
+								}
+							}
+
+			
 		}
-		if (p1.plateau[m.getX()+1][m.getY()] != 10 && p1.plateau[m.getX()+1][m.getY()] != 2 && p1.plateau[m.getX()+1][m.getY()] != 1  && p1.plateau[m.getX()+1][m.getY()] != 7  && p1.plateau[m.getX()+1][m.getY()] != 8  && p1.plateau[m.getX()+1][m.getY()] != 9 && p1.plateau[m.getX()+1][m.getY()] != 3 && p1.plateau[m.getX()+1][m.getY()] != 4 && p1.plateau[m.getX()+1][m.getY()] != 5 && p1.plateau[m.getX()+1][m.getY()] != 6) {
 		
-		if(A == 1) { 
-			p1.plateau[m.getX()][m.getY()] = 0;
-			m.position_x = m.position_x +1;
-			p1.plateau[m.getX()][m.getY()] =  7;
-		}
-		}
-		if (p1.plateau[m.getX()][m.getY()-1] != 10 && p1.plateau[m.getX()][m.getY()-1] != 2 && p1.plateau[m.getX()][m.getY()-1] != 1 && p1.plateau[m.getX()][m.getY()-1] != 7 && p1.plateau[m.getX()][m.getY()-1] != 8 && p1.plateau[m.getX()][m.getY()-1] != 9 && p1.plateau[m.getX()][m.getY()-1] != 3 && p1.plateau[m.getX()][m.getY()-1] != 4 && p1.plateau[m.getX()][m.getY()-1] != 5 && p1.plateau[m.getX()][m.getY()-1] != 6) {
-		if(B == -1) { 
-			p1.plateau[m.getX()][m.getY()] = 0;
-			m.position_y = m.position_y - 1;
-			p1.plateau[m.getX()][m.getY()] =  7;
-		}
-		}
-		if (p1.plateau[m.getX()][m.getY()+1] != 10 && p1.plateau[m.getX()][m.getY()+1] != 2 && p1.plateau[m.getX()][m.getY()+1] != 1 && p1.plateau[m.getX()][m.getY()+1] != 7 && p1.plateau[m.getX()][m.getY()+1] != 8 && p1.plateau[m.getX()][m.getY()+1] != 9 && p1.plateau[m.getX()][m.getY()+1] != 3 && p1.plateau[m.getX()][m.getY()+1] != 4 && p1.plateau[m.getX()][m.getY()+1] != 5 && p1.plateau[m.getX()][m.getY()+1] != 6) {
-		if(B == 1) { 
-			p1.plateau[m.getX()][m.getY()] = 0;
-			m.position_y = m.position_y +1;
-			p1.plateau[m.getX()][m.getY()] =  7;
-		}
-		}
-		if (p1.plateau[m.getX()-1][m.getY()] == 2) {
-			if (A == -1) {
-				h.Hp = h.Hp -1;
-				
-			}
-		}
-		if (p1.plateau[m.getX()+1][m.getY()] == 2) {
-			if (A == 1) {
-				h.Hp = h.Hp -1;
-				
-			}
-		}
-		if (p1.plateau[m.getX()][m.getY()-1] == 2) {
-			if (B == -1) {
-				h.Hp = h.Hp -1;
-				
-			}
-		}
-		if (p1.plateau[m.getX()][m.getY()+1] == 2) {
-			if (B == 1) {
-				h.Hp = h.Hp -1;
-				
-			}
-		}
-
 	}
-
-	public void deplace_ghost(ghost g, Heros h) {
+	public void deplace_ghost(ghost g, Heros h) throws ErreurHeros {
+		int X = g.getX();
+		int Y =g.getY();
+		if(X<0 || X>18) {
+			throw new ErreurHeros();
+		}
+		if(Y<0 || Y>18) {
+			throw new ErreurHeros();
+		}
 		int A = g.genererInt2(-1, 1);
 		int B = g.genererInt2(-1, 1);
-		if (p1.plateau[g.getX()][g.getY()] == 8 &&  p1.plateau[g.getX()-1][g.getY()] == 0) {
-		if(A == -1 ) { 
-			p1.plateau[g.getX()][g.getY()] = 0;
-			g.position_x = g.position_x - 1;
-			p1.plateau[g.getX()][g.getY()] = 8;
-		}
-		}
-		if (p1.plateau[g.getX()+1][g.getY()] == 0 && p1.plateau[g.getX()][g.getY()] == 8 ) {
-		
-		if(A == 1) { 
-			p1.plateau[g.getX()][g.getY()] = 0;
-			g.position_x = g.position_x +1;
-			p1.plateau[g.getX()][g.getY()] =  8;
-		}
-		}
-		if (p1.plateau[g.getX()][g.getY()-1] == 0 && p1.plateau[g.getX()][g.getY()] == 8 ) {
-		if(B == -1) { 
-			p1.plateau[g.getX()][g.getY()] = 0;
-			g.position_y = g.position_y - 1;
-			p1.plateau[g.getX()][g.getY()] =  8;
-		}
-		}
-		if (p1.plateau[g.getX()][g.getY()+1] == 0 && p1.plateau[g.getX()][g.getY()] == 8 ) {
-		if(B == 1) { 
-			p1.plateau[g.getX()][g.getY()] = 0;
-			g.position_y = g.position_y +1;
-			p1.plateau[g.getX()][g.getY()] =  8;
-		}
-		}
+		if (niveau==1) {
+			if (p1.plateau[g.getX()][g.getY()] == 8 &&  p1.plateau[g.getX()-1][g.getY()] == 0) {
+				if(A == -1 ) { 
+					p1.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x - 1;
+					p1.plateau[g.getX()][g.getY()] = 8;
+				}
+				}
+				if (p1.plateau[g.getX()+1][g.getY()] == 0 && p1.plateau[g.getX()][g.getY()] == 8 ) {
+				
+				if(A == 1) { 
+					p1.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x +1;
+					p1.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p1.plateau[g.getX()][g.getY()-1] == 0 && p1.plateau[g.getX()][g.getY()] == 8 ) {
+				if(B == -1) { 
+					p1.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y - 1;
+					p1.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p1.plateau[g.getX()][g.getY()+1] == 0 && p1.plateau[g.getX()][g.getY()] == 8 ) {
+				if(B == 1) { 
+					p1.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y +1;
+					p1.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
 
-		if (p1.plateau[g.getX()-1][g.getY()] == 1 && p1.plateau[g.getX()][g.getY()] == 9 ) {
-		if(A == -1 ) { 
-			p1.plateau[g.getX()][g.getY()] = 1;
-			g.position_x = g.position_x - 1;
-			p1.plateau[g.getX()][g.getY()] = 9;
-		}
-		}
-		if (p1.plateau[g.getX()][g.getY()] == 9 && p1.plateau[g.getX()+1][g.getY()] == 1  ) {
-		
-		if(A == 1) { 
-			p1.plateau[g.getX()][g.getY()] = 1;
-			g.position_x = g.position_x +1;
-			p1.plateau[g.getX()][g.getY()] =  9;
-		}
-		}
-		if (p1.plateau[g.getX()][g.getY()] == 9 && p1.plateau[g.getX()][g.getY()-1] == 1 ) {
-		if(B == -1) { 
-			p1.plateau[g.getX()][g.getY()] = 1;
-			g.position_y = g.position_y - 1;
-			p1.plateau[g.getX()][g.getY()] =  9;
-		}
-		}
-		if (p1.plateau[g.getX()][g.getY()+1] == 1 && p1.plateau[g.getX()][g.getY()] == 9 ) {
-		if(B == 1) { 
-			p1.plateau[g.getX()][g.getY()] = 1;
-			g.position_y = g.position_y +1;
-			p1.plateau[g.getX()][g.getY()] =  9;
-		}
-		}
-	
-		if (p1.plateau[g.getX()-1][g.getY()] == 0 && p1.plateau[g.getX()][g.getY()] == 9) {
-		if (A == -1){
-			p1.plateau[g.getX()][g.getY()] = 1;
-			g.position_x = g.position_x - 1;
-			p1.plateau[g.getX()][g.getY()] =  8;
-		}
-		}
-		if (p1.plateau[g.getX()+1][g.getY()] == 0 && p1.plateau[g.getX()][g.getY()] == 9) {
-		if (A == 1){
-			p1.plateau[g.getX()][g.getY()] = 1;
-			g.position_x = g.position_x + 1;
-			p1.plateau[g.getX()][g.getY()] =  8;
-		}
-		}
-		if (p1.plateau[g.getX()][g.getY()-1] == 0 && p1.plateau[g.getX()][g.getY()] == 9) {
-		if (B == -1){
-			p1.plateau[g.getX()][g.getY()] = 1;
-			g.position_y = g.position_y - 1;
-			p1.plateau[g.getX()][g.getY()] =  8;
-		}
-		}
-		if (p1.plateau[g.getX()][g.getY()+1] == 0 && p1.plateau[g.getX()][g.getY()] == 9){
-		if (B == 1){
-			p1.plateau[g.getX()][g.getY()] = 1;
-			g.position_y = g.position_y + 1;
-			p1.plateau[g.getX()][g.getY()] =  8;
-		}
-		}
-		
-		if (p1.plateau[g.getX()-1][g.getY()] == 1 && p1.plateau[g.getX()][g.getY()] == 8) {
-		if (A == -1){
-			p1.plateau[g.getX()][g.getY()] = 0;
-			g.position_x = g.position_x - 1;
-			p1.plateau[g.getX()][g.getY()] =  9;
-		}
-		}
-		if (p1.plateau[g.getX()+1][g.getY()] == 1 && p1.plateau[g.getX()][g.getY()] == 8) {
-		if (A == 1){
-			p1.plateau[g.getX()][g.getY()] = 0;
-			g.position_x = g.position_x + 1;
-			p1.plateau[g.getX()][g.getY()] =  9;
-		}
-		}
-		if (p1.plateau[g.getX()][g.getY()-1] == 1 && p1.plateau[g.getX()][g.getY()] == 8) {
-		if (B == -1){
-			p1.plateau[g.getX()][g.getY()] = 0;
-			g.position_y = g.position_y - 1;
-			p1.plateau[g.getX()][g.getY()] =  9;
-		}
-		}
-		if (p1.plateau[g.getX()][g.getY()+1] == 1 && p1.plateau[g.getX()][g.getY()] == 8){
-		if (B == 1){
-			p1.plateau[g.getX()][g.getY()] = 0;
-			g.position_y = g.position_y + 1;
-			p1.plateau[g.getX()][g.getY()] =  9;
-		}
-		}
-		if (p1.plateau[g.getX()-1][g.getY()] == 2) {
-			if (A == -1) {
-				h.Hp = h.Hp -1;
+				if (p1.plateau[g.getX()-1][g.getY()] == 1 && p1.plateau[g.getX()][g.getY()] == 9 ) {
+				if(A == -1 ) { 
+					p1.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x - 1;
+					p1.plateau[g.getX()][g.getY()] = 9;
+				}
+				}
+				if (p1.plateau[g.getX()][g.getY()] == 9 && p1.plateau[g.getX()+1][g.getY()] == 1  ) {
 				
+				if(A == 1) { 
+					p1.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x +1;
+					p1.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p1.plateau[g.getX()][g.getY()] == 9 && p1.plateau[g.getX()][g.getY()-1] == 1 ) {
+				if(B == -1) { 
+					p1.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y - 1;
+					p1.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p1.plateau[g.getX()][g.getY()+1] == 1 && p1.plateau[g.getX()][g.getY()] == 9 ) {
+				if(B == 1) { 
+					p1.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y +1;
+					p1.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+			
+				if (p1.plateau[g.getX()-1][g.getY()] == 0 && p1.plateau[g.getX()][g.getY()] == 9) {
+				if (A == -1){
+					p1.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x - 1;
+					p1.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p1.plateau[g.getX()+1][g.getY()] == 0 && p1.plateau[g.getX()][g.getY()] == 9) {
+				if (A == 1){
+					p1.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x + 1;
+					p1.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p1.plateau[g.getX()][g.getY()-1] == 0 && p1.plateau[g.getX()][g.getY()] == 9) {
+				if (B == -1){
+					p1.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y - 1;
+					p1.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p1.plateau[g.getX()][g.getY()+1] == 0 && p1.plateau[g.getX()][g.getY()] == 9){
+				if (B == 1){
+					p1.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y + 1;
+					p1.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				
+				if (p1.plateau[g.getX()-1][g.getY()] == 1 && p1.plateau[g.getX()][g.getY()] == 8) {
+				if (A == -1){
+					p1.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x - 1;
+					p1.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p1.plateau[g.getX()+1][g.getY()] == 1 && p1.plateau[g.getX()][g.getY()] == 8) {
+				if (A == 1){
+					p1.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x + 1;
+					p1.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p1.plateau[g.getX()][g.getY()-1] == 1 && p1.plateau[g.getX()][g.getY()] == 8) {
+				if (B == -1){
+					p1.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y - 1;
+					p1.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p1.plateau[g.getX()][g.getY()+1] == 1 && p1.plateau[g.getX()][g.getY()] == 8){
+				if (B == 1){
+					p1.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y + 1;
+					p1.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p1.plateau[g.getX()-1][g.getY()] == 2) {
+					if (A == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p1.plateau[g.getX()+1][g.getY()] == 2) {
+					if (A == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p1.plateau[g.getX()][g.getY()-1] == 2) {
+					if (B == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p1.plateau[g.getX()][g.getY()+1] == 2) {
+					if (B == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+			
+			
+			}
+		if (niveau==2) {
+			if (p2.plateau[g.getX()][g.getY()] == 8 &&  p2.plateau[g.getX()-1][g.getY()] == 0) {
+				if(A == -1 ) { 
+					p2.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x - 1;
+					p2.plateau[g.getX()][g.getY()] = 8;
+				}
+				}
+				if (p2.plateau[g.getX()+1][g.getY()] == 0 && p2.plateau[g.getX()][g.getY()] == 8 ) {
+				
+				if(A == 1) { 
+					p2.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x +1;
+					p2.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p2.plateau[g.getX()][g.getY()-1] == 0 && p2.plateau[g.getX()][g.getY()] == 8 ) {
+				if(B == -1) { 
+					p2.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y - 1;
+					p2.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p2.plateau[g.getX()][g.getY()+1] == 0 && p2.plateau[g.getX()][g.getY()] == 8 ) {
+				if(B == 1) { 
+					p2.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y +1;
+					p2.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+
+				if (p2.plateau[g.getX()-1][g.getY()] == 1 && p2.plateau[g.getX()][g.getY()] == 9 ) {
+				if(A == -1 ) { 
+					p2.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x - 1;
+					p2.plateau[g.getX()][g.getY()] = 9;
+				}
+				}
+				if (p2.plateau[g.getX()][g.getY()] == 9 && p2.plateau[g.getX()+1][g.getY()] == 1  ) {
+				
+				if(A == 1) { 
+					p2.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x +1;
+					p2.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p2.plateau[g.getX()][g.getY()] == 9 && p2.plateau[g.getX()][g.getY()-1] == 1 ) {
+				if(B == -1) { 
+					p2.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y - 1;
+					p2.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p2.plateau[g.getX()][g.getY()+1] == 1 && p2.plateau[g.getX()][g.getY()] == 9 ) {
+				if(B == 1) { 
+					p2.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y +1;
+					p2.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+			
+				if (p2.plateau[g.getX()-1][g.getY()] == 0 && p2.plateau[g.getX()][g.getY()] == 9) {
+				if (A == -1){
+					p2.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x - 1;
+					p2.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p2.plateau[g.getX()+1][g.getY()] == 0 && p2.plateau[g.getX()][g.getY()] == 9) {
+				if (A == 1){
+					p2.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x + 1;
+					p2.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p2.plateau[g.getX()][g.getY()-1] == 0 && p2.plateau[g.getX()][g.getY()] == 9) {
+				if (B == -1){
+					p2.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y - 1;
+					p2.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p2.plateau[g.getX()][g.getY()+1] == 0 && p2.plateau[g.getX()][g.getY()] == 9){
+				if (B == 1){
+					p2.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y + 1;
+					p2.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				
+				if (p2.plateau[g.getX()-1][g.getY()] == 1 && p2.plateau[g.getX()][g.getY()] == 8) {
+				if (A == -1){
+					p2.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x - 1;
+					p2.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p2.plateau[g.getX()+1][g.getY()] == 1 && p2.plateau[g.getX()][g.getY()] == 8) {
+				if (A == 1){
+					p2.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x + 1;
+					p2.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p2.plateau[g.getX()][g.getY()-1] == 1 && p2.plateau[g.getX()][g.getY()] == 8) {
+				if (B == -1){
+					p2.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y - 1;
+					p2.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p2.plateau[g.getX()][g.getY()+1] == 1 && p2.plateau[g.getX()][g.getY()] == 8){
+				if (B == 1){
+					p2.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y + 1;
+					p2.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p2.plateau[g.getX()-1][g.getY()] == 2) {
+					if (A == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p2.plateau[g.getX()+1][g.getY()] == 2) {
+					if (A == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p2.plateau[g.getX()][g.getY()-1] == 2) {
+					if (B == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p2.plateau[g.getX()][g.getY()+1] == 2) {
+					if (B == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+			
+			
+			}
+		if (niveau==5) {
+			if (p5.plateau[g.getX()][g.getY()] == 8 &&  p5.plateau[g.getX()-1][g.getY()] == 0) {
+				if(A == -1 ) { 
+					p5.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x - 1;
+					p5.plateau[g.getX()][g.getY()] = 8;
+				}
+				}
+				if (p5.plateau[g.getX()+1][g.getY()] == 0 && p5.plateau[g.getX()][g.getY()] == 8 ) {
+				
+				if(A == 1) { 
+					p5.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x +1;
+					p5.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p5.plateau[g.getX()][g.getY()-1] == 0 && p5.plateau[g.getX()][g.getY()] == 8 ) {
+				if(B == -1) { 
+					p5.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y - 1;
+					p5.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p5.plateau[g.getX()][g.getY()+1] == 0 && p5.plateau[g.getX()][g.getY()] == 8 ) {
+				if(B == 1) { 
+					p5.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y +1;
+					p5.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+
+				if (p5.plateau[g.getX()-1][g.getY()] == 1 && p5.plateau[g.getX()][g.getY()] == 9 ) {
+				if(A == -1 ) { 
+					p5.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x - 1;
+					p5.plateau[g.getX()][g.getY()] = 9;
+				}
+				}
+				if (p5.plateau[g.getX()][g.getY()] == 9 && p5.plateau[g.getX()+1][g.getY()] == 1  ) {
+				
+				if(A == 1) { 
+					p5.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x +1;
+					p5.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p5.plateau[g.getX()][g.getY()] == 9 && p5.plateau[g.getX()][g.getY()-1] == 1 ) {
+				if(B == -1) { 
+					p5.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y - 1;
+					p5.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p5.plateau[g.getX()][g.getY()+1] == 1 && p5.plateau[g.getX()][g.getY()] == 9 ) {
+				if(B == 1) { 
+					p5.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y +1;
+					p5.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+			
+				if (p5.plateau[g.getX()-1][g.getY()] == 0 && p5.plateau[g.getX()][g.getY()] == 9) {
+				if (A == -1){
+					p5.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x - 1;
+					p5.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p5.plateau[g.getX()+1][g.getY()] == 0 && p5.plateau[g.getX()][g.getY()] == 9) {
+				if (A == 1){
+					p5.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x + 1;
+					p5.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p5.plateau[g.getX()][g.getY()-1] == 0 && p5.plateau[g.getX()][g.getY()] == 9) {
+				if (B == -1){
+					p5.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y - 1;
+					p5.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p5.plateau[g.getX()][g.getY()+1] == 0 && p5.plateau[g.getX()][g.getY()] == 9){
+				if (B == 1){
+					p5.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y + 1;
+					p5.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				
+				if (p5.plateau[g.getX()-1][g.getY()] == 1 && p5.plateau[g.getX()][g.getY()] == 8) {
+				if (A == -1){
+					p5.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x - 1;
+					p5.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p5.plateau[g.getX()+1][g.getY()] == 1 && p5.plateau[g.getX()][g.getY()] == 8) {
+				if (A == 1){
+					p5.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x + 1;
+					p5.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p5.plateau[g.getX()][g.getY()-1] == 1 && p5.plateau[g.getX()][g.getY()] == 8) {
+				if (B == -1){
+					p5.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y - 1;
+					p5.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p5.plateau[g.getX()][g.getY()+1] == 1 && p5.plateau[g.getX()][g.getY()] == 8){
+				if (B == 1){
+					p5.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y + 1;
+					p5.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p5.plateau[g.getX()-1][g.getY()] == 2) {
+					if (A == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p5.plateau[g.getX()+1][g.getY()] == 2) {
+					if (A == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p5.plateau[g.getX()][g.getY()-1] == 2) {
+					if (B == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p5.plateau[g.getX()][g.getY()+1] == 2) {
+					if (B == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+			
+			
+			}
+		if (niveau==3) {
+			if (p3.plateau[g.getX()][g.getY()] == 8 &&  p3.plateau[g.getX()-1][g.getY()] == 0) {
+				if(A == -1 ) { 
+					p3.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x - 1;
+					p3.plateau[g.getX()][g.getY()] = 8;
+				}
+				}
+				if (p3.plateau[g.getX()+1][g.getY()] == 0 && p3.plateau[g.getX()][g.getY()] == 8 ) {
+				
+				if(A == 1) { 
+					p3.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x +1;
+					p3.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p3.plateau[g.getX()][g.getY()-1] == 0 && p3.plateau[g.getX()][g.getY()] == 8 ) {
+				if(B == -1) { 
+					p3.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y - 1;
+					p3.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p3.plateau[g.getX()][g.getY()+1] == 0 && p3.plateau[g.getX()][g.getY()] == 8 ) {
+				if(B == 1) { 
+					p3.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y +1;
+					p3.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+
+				if (p3.plateau[g.getX()-1][g.getY()] == 1 && p3.plateau[g.getX()][g.getY()] == 9 ) {
+				if(A == -1 ) { 
+					p3.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x - 1;
+					p3.plateau[g.getX()][g.getY()] = 9;
+				}
+				}
+				if (p3.plateau[g.getX()][g.getY()] == 9 && p3.plateau[g.getX()+1][g.getY()] == 1  ) {
+				
+				if(A == 1) { 
+					p3.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x +1;
+					p3.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p3.plateau[g.getX()][g.getY()] == 9 && p3.plateau[g.getX()][g.getY()-1] == 1 ) {
+				if(B == -1) { 
+					p3.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y - 1;
+					p3.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p3.plateau[g.getX()][g.getY()+1] == 1 && p3.plateau[g.getX()][g.getY()] == 9 ) {
+				if(B == 1) { 
+					p3.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y +1;
+					p3.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+			
+				if (p3.plateau[g.getX()-1][g.getY()] == 0 && p3.plateau[g.getX()][g.getY()] == 9) {
+				if (A == -1){
+					p3.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x - 1;
+					p3.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p3.plateau[g.getX()+1][g.getY()] == 0 && p3.plateau[g.getX()][g.getY()] == 9) {
+				if (A == 1){
+					p3.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x + 1;
+					p3.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p3.plateau[g.getX()][g.getY()-1] == 0 && p3.plateau[g.getX()][g.getY()] == 9) {
+				if (B == -1){
+					p3.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y - 1;
+					p3.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p3.plateau[g.getX()][g.getY()+1] == 0 && p3.plateau[g.getX()][g.getY()] == 9){
+				if (B == 1){
+					p3.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y + 1;
+					p3.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				
+				if (p3.plateau[g.getX()-1][g.getY()] == 1 && p3.plateau[g.getX()][g.getY()] == 8) {
+				if (A == -1){
+					p3.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x - 1;
+					p3.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p3.plateau[g.getX()+1][g.getY()] == 1 && p3.plateau[g.getX()][g.getY()] == 8) {
+				if (A == 1){
+					p3.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x + 1;
+					p3.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p3.plateau[g.getX()][g.getY()-1] == 1 && p3.plateau[g.getX()][g.getY()] == 8) {
+				if (B == -1){
+					p3.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y - 1;
+					p3.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p3.plateau[g.getX()][g.getY()+1] == 1 && p3.plateau[g.getX()][g.getY()] == 8){
+				if (B == 1){
+					p3.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y + 1;
+					p3.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p3.plateau[g.getX()-1][g.getY()] == 2) {
+					if (A == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p3.plateau[g.getX()+1][g.getY()] == 2) {
+					if (A == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p3.plateau[g.getX()][g.getY()-1] == 2) {
+					if (B == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p3.plateau[g.getX()][g.getY()+1] == 2) {
+					if (B == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+			
+			
+			}
+		if (niveau==4) {
+			if (p4.plateau[g.getX()][g.getY()] == 8 &&  p4.plateau[g.getX()-1][g.getY()] == 0) {
+				if(A == -1 ) { 
+					p4.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x - 1;
+					p4.plateau[g.getX()][g.getY()] = 8;
+				}
+				}
+				if (p4.plateau[g.getX()+1][g.getY()] == 0 && p4.plateau[g.getX()][g.getY()] == 8 ) {
+				
+				if(A == 1) { 
+					p4.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x +1;
+					p4.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p4.plateau[g.getX()][g.getY()-1] == 0 && p4.plateau[g.getX()][g.getY()] == 8 ) {
+				if(B == -1) { 
+					p4.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y - 1;
+					p4.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p4.plateau[g.getX()][g.getY()+1] == 0 && p4.plateau[g.getX()][g.getY()] == 8 ) {
+				if(B == 1) { 
+					p4.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y +1;
+					p4.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+
+				if (p4.plateau[g.getX()-1][g.getY()] == 1 && p4.plateau[g.getX()][g.getY()] == 9 ) {
+				if(A == -1 ) { 
+					p4.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x - 1;
+					p4.plateau[g.getX()][g.getY()] = 9;
+				}
+				}
+				if (p4.plateau[g.getX()][g.getY()] == 9 && p4.plateau[g.getX()+1][g.getY()] == 1  ) {
+				
+				if(A == 1) { 
+					p4.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x +1;
+					p4.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p4.plateau[g.getX()][g.getY()] == 9 && p4.plateau[g.getX()][g.getY()-1] == 1 ) {
+				if(B == -1) { 
+					p4.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y - 1;
+					p4.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p4.plateau[g.getX()][g.getY()+1] == 1 && p4.plateau[g.getX()][g.getY()] == 9 ) {
+				if(B == 1) { 
+					p4.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y +1;
+					p4.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+			
+				if (p4.plateau[g.getX()-1][g.getY()] == 0 && p4.plateau[g.getX()][g.getY()] == 9) {
+				if (A == -1){
+					p4.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x - 1;
+					p4.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p4.plateau[g.getX()+1][g.getY()] == 0 && p4.plateau[g.getX()][g.getY()] == 9) {
+				if (A == 1){
+					p4.plateau[g.getX()][g.getY()] = 1;
+					g.position_x = g.position_x + 1;
+					p4.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p4.plateau[g.getX()][g.getY()-1] == 0 && p4.plateau[g.getX()][g.getY()] == 9) {
+				if (B == -1){
+					p4.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y - 1;
+					p4.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				if (p4.plateau[g.getX()][g.getY()+1] == 0 && p4.plateau[g.getX()][g.getY()] == 9){
+				if (B == 1){
+					p4.plateau[g.getX()][g.getY()] = 1;
+					g.position_y = g.position_y + 1;
+					p4.plateau[g.getX()][g.getY()] =  8;
+				}
+				}
+				
+				if (p4.plateau[g.getX()-1][g.getY()] == 1 && p4.plateau[g.getX()][g.getY()] == 8) {
+				if (A == -1){
+					p4.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x - 1;
+					p4.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p4.plateau[g.getX()+1][g.getY()] == 1 && p4.plateau[g.getX()][g.getY()] == 8) {
+				if (A == 1){
+					p4.plateau[g.getX()][g.getY()] = 0;
+					g.position_x = g.position_x + 1;
+					p4.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p4.plateau[g.getX()][g.getY()-1] == 1 && p4.plateau[g.getX()][g.getY()] == 8) {
+				if (B == -1){
+					p4.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y - 1;
+					p4.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p4.plateau[g.getX()][g.getY()+1] == 1 && p4.plateau[g.getX()][g.getY()] == 8){
+				if (B == 1){
+					p4.plateau[g.getX()][g.getY()] = 0;
+					g.position_y = g.position_y + 1;
+					p4.plateau[g.getX()][g.getY()] =  9;
+				}
+				}
+				if (p4.plateau[g.getX()-1][g.getY()] == 2) {
+					if (A == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p4.plateau[g.getX()+1][g.getY()] == 2) {
+					if (A == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p4.plateau[g.getX()][g.getY()-1] == 2) {
+					if (B == -1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+				if (p4.plateau[g.getX()][g.getY()+1] == 2) {
+					if (B == 1) {
+						h.Hp = h.Hp -1;
+						
+					}
+				}
+			
+			
 			}
 		}
-		if (p1.plateau[g.getX()+1][g.getY()] == 2) {
-			if (A == 1) {
-				h.Hp = h.Hp -1;
-				
-			}
-		}
-		if (p1.plateau[g.getX()][g.getY()-1] == 2) {
-			if (B == -1) {
-				h.Hp = h.Hp -1;
-				
-			}
-		}
-		if (p1.plateau[g.getX()][g.getY()+1] == 2) {
-			if (B == 1) {
-				h.Hp = h.Hp -1;
-				
-			}
-		}
-	
-	
-	}
 
 
 

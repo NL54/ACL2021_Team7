@@ -16,18 +16,24 @@ class JeuTest {
 
 	private int niveau;
 	private Jeu jeu;
-	Monstre M = new Monstre(1,8,14);// avec [8,14] [x,y] position initiale du monstre
+	Monstre M = new Monstre(1,14,8);// avec [14,8] [y,x] position initiale du monstre
 	private Jeu jeu2;
-	private ghost g= new ghost(1,6,3);
+	private ghost g= new ghost(1,3,6); //[3,6][y,x]
 	@BeforeEach
 	void setUp()  {
 		niveau=1;
 		this.jeu=new Jeu("helpFilePacman.txt",1);
 		this.jeu2=new Jeu("helpFilePacman.txt",2);
-		this.jeu2.p1.plateau[1][1]=0;
-		this.jeu.p1f.plateau[1][1]=0;
-		Monstre M = new Monstre(1,8,14);
-		ghost g = new ghost(1,6,3);
+		for (int i=0;i<jeu.p1f.taille;i++) {
+			for (int j=0;j<jeu.p1f.taille;j++) {
+				jeu.p1f.plateau[i][j]=0;
+			}
+		}
+		for (int i=0;i<jeu2.p1.taille;i++) {
+			for (int j=0;j<jeu2.p1.taille;j++) {
+				jeu2.p1.plateau[i][j]=0;
+			}
+		}
 	}
 	
 	@Test
@@ -146,6 +152,9 @@ class JeuTest {
 	void testactivePassageBas() throws ErreurHeros{ //POS passage [4 ,12][x,y]
 		jeu2.p1.plateau[10][4]=6; // pos passage
 		jeu2.p1.plateau[9][4]=2;
+		if(niveau>jeu2.Niveaumax()) {
+			throw new ErreurHeros();
+		}
 		jeu2.activePassage(niveau, Cmd.DOWN);
 		assertTrue(jeu2.activePassage(niveau, Cmd.DOWN));
 	}
@@ -154,6 +163,9 @@ class JeuTest {
 	void testactivePassageHaut() throws ErreurHeros{ //POS passage [4 ,12][x,y]
 		jeu2.p1.plateau[10][4]=6; // pos passage
 		jeu2.p1.plateau[11][4]=2;
+		if(niveau>jeu2.Niveaumax()) {
+			throw new ErreurHeros();
+		}
 		jeu2.activePassage(niveau, Cmd.UP);
 		assertTrue(jeu2.activePassage(niveau, Cmd.UP));
 	}
@@ -161,6 +173,9 @@ class JeuTest {
 	void testactivePassageDroit()throws ErreurHeros { //POS passage [4 ,12][x,y]
 		jeu2.p1.plateau[10][4]=6; // pos passage
 		jeu2.p1.plateau[10][3]=2;
+		if(niveau>jeu2.Niveaumax()) {
+			throw new ErreurHeros();
+		}
 		jeu2.activePassage(niveau, Cmd.RIGHT);
 		assertTrue(jeu2.activePassage(niveau, Cmd.RIGHT));
 	}
@@ -168,25 +183,48 @@ class JeuTest {
 	void testactivePassageGauche()throws ErreurHeros { //POS passage [4 ,12][x,y]
 		jeu2.p1.plateau[10][4]=6; // pos passage
 		jeu2.p1.plateau[10][5]=2;
+		if(niveau>jeu2.Niveaumax()) {
+			throw new ErreurHeros();
+		}
 		jeu2.activePassage(niveau, Cmd.LEFT);
 		assertTrue(jeu2.activePassage(niveau, Cmd.LEFT));
 	}
 	
 	//Test deplacerMonstre
 	@Test
-	void testDeplacerMonstre() { //le monstre M a la position [8,14][x,y]
-		jeu.deplace_monstre(M);
+	void testDeplacerMonstre() throws ErreurHeros { //le monstre M a la position [8,14][x,y]
+//		int X = g.getX();
+//		int Y =g.getY();
+//		if(X<0 || X>18) {
+//			throw new ErreurHeros();
+//		}
+//		if(Y<0 || Y>18) {
+//			throw new ErreurHeros();
+//		}
+		jeu2.deplace_monstre(M,jeu2.h);
 		boolean test = false;
-		if(jeu.p1.plateau[14][9]==7) { // si le monstres'est deplacé à droite
+		if(jeu2.p1.plateau[14][9]==7) { // si le monstres'est deplacé à droite
 			test=true;
 		}
-		else if(jeu.p1.plateau[14][7]==7) { // si le monstres'est deplacé à gauche
+		else if(jeu2.p1.plateau[14][7]==7) { // si le monstres'est deplacé à gauche
 			test=true;
 		}
-		else if(jeu.p1.plateau[15][8]==7) { // si le monstres'est deplacé en bas
+		else if(jeu2.p1.plateau[15][8]==7) { // si le monstres'est deplacé en bas
 			test=true;
 		}
-		else if(jeu.p1.plateau[13][8]==7) { // si le monstres'est deplacé en haut
+		else if(jeu2.p1.plateau[13][8]==7) { // si le monstres'est deplacé en haut
+			test=true;
+		}
+		if(jeu2.p1.plateau[15][9]==7) { // si le monstres'est deplacé à droite
+			test=true;
+		}
+		if(jeu2.p1.plateau[13][9]==7) { // si le monstres'est deplacé à droite
+			test=true;
+		}
+		if(jeu2.p1.plateau[15][7]==7) { // si le monstres'est deplacé à droite
+			test=true;
+		}
+		if(jeu2.p1.plateau[13][7]==7) { // si le monstres'est deplacé à droite
 			test=true;
 		}
 		assertTrue(test);
@@ -194,21 +232,43 @@ class JeuTest {
 	}
 	//deplaceghost
 	@Test
-	void testDeplacerGhost() { //le ghost g a la position [6,3][x,y]
-		jeu.deplace_ghost(g);
+	void testDeplacerGhost() throws ErreurHeros { //le ghost g a la position [6,3][x,y]
+		jeu2.p1.plateau[3][6]=8;
+		jeu2.deplace_ghost(g,jeu2.h);
+//		int X = g.getX();
+//		int Y =g.getY();
+//		if(X<0 || X>18) {
+//			throw new ErreurHeros();
+//		}
+//		if(Y<0 || Y>18) {
+//			throw new ErreurHeros();
+//		}
 		boolean test = false;
-		if(jeu.p1.plateau[3][7]==8) { // si le ghost s'est deplacé à droite
+		if(jeu2.p1.plateau[3][7]==8) { // si le ghost s'est deplacé à droite
 			test=true;
 		}
-		else if(jeu.p1.plateau[3][5]==8) { // si le ghost s'est deplacé à gauche
+		else if(jeu2.p1.plateau[3][5]==8) { // si le ghost s'est deplacé à gauche
 			test=true;
 		}
-		else if(jeu.p1.plateau[4][6]==8) { // si le ghost s'est deplacé en bas
+		else if(jeu2.p1.plateau[4][6]==8) { // si le ghost s'est deplacé en bas
 			test=true;
 		}
-		else if(jeu.p1.plateau[2][6]==8) { // si le ghost s'est deplacé en haut
+		else if(jeu2.p1.plateau[2][6]==8) { // si le ghost s'est deplacé en haut
 			test=true;
 		}
+		else if(jeu2.p1.plateau[2][7]==8) { // si le ghost s'est deplacé en haut à droite
+			test=true;
+		}
+		else if(jeu2.p1.plateau[2][5]==8) { // si le ghost s'est deplacé en haut à droite
+			test=true;
+		}
+		else if(jeu2.p1.plateau[4][7]==8) { // si le ghost s'est deplacé en bas à droite
+			test=true;
+		}
+		else if(jeu2.p1.plateau[4][5]==8) { // si le ghost s'est deplacé en bas à gauche
+			test=true;
+		}
+		
 		assertTrue(test);
 		
 	}
